@@ -85,9 +85,7 @@
 				<span class="ti-pencil-alt"></span> Patients
 				</a>
 				<ul class="collapse list-unstyled" id="nav-pattient">
-				<li>
-							<a href="add_patient_file.php">Add Patient File</a>
-						</li>
+				
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>

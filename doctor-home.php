@@ -86,9 +86,7 @@ session_start();
 				<span class="ti-pencil-alt"></span> Patients
 				</a>
 				<ul class="collapse list-unstyled" id="nav-pattient">
-				<li>
-							<a href="add_patient_file.php">Add Patient File</a>
-						</li>
+				
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>
@@ -169,7 +167,7 @@ session_start();
 								<table class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>Check </th>
+											<th>Status </th>
 											<th>Patient Name</th>
 											<th>Patient ID </th>
 											<th>Doctor</th>
@@ -217,10 +215,10 @@ session_start();
 
                                       echo"  
 										<tr>
-										<td><button type='button' class='btn btn-danger'><a href='delete_appotiment1.php?name={$name}'>Delete</a></button></td>
+										<td><button type='button' class='btn btn-danger'><a href='delete_appotiment1.php?name={$name}'>Done</a></button></td>
 											<td id='name'>".$row['Patient_Name']."</td>
-											<td id='id'><a href='add_patient_file.php?id={$id}'>".$row['Patient_ID']."</a></td>
-
+											<td id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>".$row['Patient_ID']."</a></td>
+									
 											<td>".$doctorname."</td>
 											<td>".$row['Department']."</td>
 											<td>".$row['Appotiment_Date']."</td>

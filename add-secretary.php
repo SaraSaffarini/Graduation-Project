@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+<?php session_start();
+?>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ProClinic-Bootstrap4 Hospital Admin</title>
+    <title>Saint Luke's Hospital</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" href="images/fav.png">
     <!-- Bootstrap core CSS -->
@@ -93,21 +95,65 @@
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
-    <!-- /Sidebar -->
+		<div id="content">
+			<!-- Top Navigation -->
+			<!-- Top Navigation -->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="responsive-logo">
+						<a href="admin.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+					</div>
+					<ul class="nav">
+		
+						<li class="nav-item">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+								<span class="ti-user"></span>
+							</a>
+							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
+								<h5><?php echo $_SESSION['username'] ;?>
+                                </h5>
+							
+								<a class="dropdown-item" href="login.php">
+									<span class="ti-power-off"></span> Logout</a>
+							</div>
+						</li>
+					</ul>
+				
+				</div>
+			</nav>
+				<!-- /Top Navigation -->
+			<!-- Breadcrumb -->
+			<!-- Page Title -->
+			<div class="row no-margin-padding">
+				<div class="col-md-6">
+					<h3 class="block-title">Add Secretary</h3>
+				</div>
+				<div class="col-md-6">
+					<ol class="breadcrumb">						
+						<li class="breadcrumb-item">
+							<a href="admin.php">
+								<span class="ti-home"></span>
+							</a>
+                        </li>
+                       
+					</ol>
+				</div>
+			</div>
+		<!-- /Sidebar -->
     <!-- Page Content -->
     <div id="content">
    
     <form method="post" id="form" action='add_secertery.php' >
-								<div class="form-row">
+								<div class="form-row" style="margin-left: 10px;margin-top: 15px">
 									<div class="form-group col-md-6">
 										<label for="patient-id">Username</label>
-										<input type="text" class="form-control" placeholder="" id="patient-id" name='username' required>
+										<input type="text" class="form-control" placeholder="" id="patient-id" name='username' required style="width: 98%">
 									</div>
 									<div class="form-group col-md-6">
     
     
 									<label for="appointment-date">Password</label>
-  								  <input type="password" placeholder="" class="form-control" id="appointment-date" name='password' required>	
+  								  <input type="password" placeholder="" class="form-control" id="appointment-date" name='password' required style="width: 98%">	
 									</div>
 											
 									<div class="form-check col-md-12 mb-2">

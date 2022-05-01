@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ProClinic-Bootstrap4 Hospital Admin</title>
+    <title>Saint Luke's Hospital</title>
     <!-- Fav  Icon Link -->
     <link rel="shortcut icon" type="image/png" href="images/fav.png">
     <!-- Bootstrap core CSS -->
@@ -43,7 +43,7 @@
     <!-- Sidebar -->
     <nav id="sidebar" class="proclinic-bg">
 			<div class="sidebar-header">
-				<a href="index.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
+				<a href="admin.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
 
@@ -93,6 +93,8 @@
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
+    
+  
     <!-- /Sidebar -->
     <!-- Page Content -->
     <div id="content">

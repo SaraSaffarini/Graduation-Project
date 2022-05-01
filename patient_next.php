@@ -272,7 +272,7 @@
 
      
   echo"  <div class='form-group col-md-6'>
-    <label for='time-slot'>Avaialbe Time Slot</label>
+    <label for='time-slot'>Available Time Slot</label>
     <select class='form-control' id='time-slot' name='appointment-time'>";
     for ($Z = 0; $Z < count($new); $Z++) { 
         echo "<option>";

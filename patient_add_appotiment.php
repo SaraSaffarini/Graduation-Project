@@ -196,7 +196,7 @@
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-id">Patient ID</label>
-										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" required>
+										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" required value='<?php echo $_SESSION['username'] ;?>'>
 									</div>
 									<div class="form-group col-md-6">
     

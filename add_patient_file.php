@@ -191,8 +191,12 @@ session_start();
                                     </div>
                                     <div class="form-group col-md-6">
 										<label for="about-doctor1">Doctor Name</label>
-										<input type="text" placeholder="" class="form-control" id="about-doctor1" rows="3" name="doctor_name" required>
-                                    </div>
+										<?php
+										 $doctorname=$_GET['name'];
+										 echo"
+										<input type='text' placeholder='' class='form-control' id='about-doctor1' rows='3' name='name' required value='{$doctorname}'>";
+                                    ?>
+										</div>
 									
                                    
 												
