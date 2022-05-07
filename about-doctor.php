@@ -247,7 +247,6 @@
                                                     <td><strong>Email</strong></td>
                                                     <td>".$row['email']."</td>
                                                 </tr>
-
                                             </tbody>";
                                             }
                                             }

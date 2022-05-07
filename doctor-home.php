@@ -75,7 +75,7 @@ session_start();
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
-							<a href="doctor_hormons.php">Show Hormons Test Result</a>
+							<a href="doctor_hormones.php">Show Hormone Test Result</a>
 						</li>
 					
 					</ul>
@@ -184,7 +184,7 @@ session_start();
                                                 $username = "root";
                                                 $password = "";
 
-                                        $dbname = "proclinc";
+                                        $dbname = "e-care";
 
                                         // Create connection
                                         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -216,7 +216,7 @@ session_start();
                                       echo"  
 										<tr>
 										<td><button type='button' class='btn btn-danger'><a href='delete_appotiment1.php?name={$name}'>Done</a></button></td>
-											<td id='name'>".$row['Patient_Name']."</td>
+											<td id='name'><a href='request_test_doctor.php?id={$id} && name={$doctorname}'>".$row['Patient_Name']."</a></td>
 											<td id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>".$row['Patient_ID']."</a></td>
 									
 											<td>".$doctorname."</td>

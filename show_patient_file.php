@@ -75,7 +75,7 @@ session_start();
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
-							<a href="doctor_hormons.php">Show Hormons Test Result</a>
+							<a href="doctor_hormones.php">Show Hormones Test Result</a>
 						</li>
 					
 					</ul>
@@ -180,7 +180,7 @@ session_start();
                                                 $username = "root";
                                                 $password = "";
 
-                                        $dbname = "proclinc";
+                                        $dbname = "e-care";
 
                                         // Create connection
                                         $conn = new mysqli($servername, $username, $password, $dbname);

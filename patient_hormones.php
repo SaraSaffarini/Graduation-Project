@@ -1,6 +1,6 @@
-<?php 
-session_start();
-?>
+<?php
+	    session_start();
+	?>
 <!DOCTYPE html>
 <html>
 
@@ -13,6 +13,8 @@ session_start();
 	<link rel="shortcut icon" type="image/png" href="images/fav.png">
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
 	<!-- themify icons CSS -->
 	<link rel="stylesheet" href="css/themify-icons.css">
 	<!-- Animations CSS -->
@@ -26,9 +28,9 @@ session_start();
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 	<link rel="stylesheet" href="datatable/dataTables.bootstrap4.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 	<script src="js/modernizr.min.js"></script>
+
 </head>
 
 <body>
@@ -41,21 +43,20 @@ session_start();
 	</div>
 	<!--/Pre Loader -->
 	<div class="wrapper">
-		<!-- Sidebar -->
-		<nav id="sidebar" class="proclinic-bg">
+    <nav id="sidebar" class="proclinic-bg">
 			<div class="sidebar-header">
-				<a href="lab.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
+				<a href="patient-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
-
+              
 				<li>
 					<a href="#nav-patients" data-toggle="collapse" aria-expanded="false">
 						<span class="ti-pencil-alt"></span> Urine Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-patients">
-						
+					
 						<li>
-							<a href="all_urine.php">All Urine Reports</a>
+							<a href="patient_urine.php">All Urine Reports</a>
 						</li>
 					
 					</ul>
@@ -67,7 +68,7 @@ session_start();
 					<ul class="collapse list-unstyled" id="nav-doctors">
 						
 						<li>
-							<a href="all_stool.php">All Stool Reports</a>
+							<a href="patient_stool.php">All Stool Reports</a>
 						</li>
 						
 					</ul>
@@ -77,15 +78,29 @@ session_start();
 						<span class="ti-pencil-alt"></span> Hormone Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
-						
+					
 						<li>
-							<a href="all_hormones.php">All Hormone Reports</a>
+							<a href="patient_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
 				</li>
+                <li>
+					<a href="#nav-patientss" data-toggle="collapse" aria-expanded="false">
+						<span class="ti-pencil-alt"></span> Appointment
+					</a>
+					<ul class="collapse list-unstyled" id="nav-patientss">
+					
+						<li>
+							<a href="patient_add_appotiment.php">Add Appointment</a>
+						</li>
+                        <li>
+							<a href="patient_appotiment.php">My Appointments</a>
+						</li>
+					
+					</ul>
+				</li>
 			
-
 			</ul>
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
@@ -128,16 +143,16 @@ session_start();
 			<!-- Page Title -->
 			<div class="row no-margin-padding">
 				<div class="col-md-6">
-					<h3 class="block-title">Stool Analysis</h3>
+					<h3 class="block-title">Hormone Analysis</h3>
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">						
 						<li class="breadcrumb-item">
-							<a href="lab.php">
+							<a href="patient-home.php">
 								<span class="ti-home"></span>
 							</a>
                         </li>
-                      
+                       
 					</ol>
 				</div>
 			</div>
@@ -151,60 +166,88 @@ session_start();
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
-							<h3 class="widget-title">Add Stool Analysis</h3>
+							<h3 class="widget-title">My Hormon Tests</h3>							
+							<div class="table-responsive mb-3">
+								<table id="tableId" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											
+											<th>Patient ID</th>
+											<th>T3</th>
+											<th>T4</th>
+											<th>THS</th>
+											<th>Vitamin B12</th>
+											<th>Vitamin D</th>
+                                    
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
 
-							<form method='post' id="form" action='stool_rep.php'>
-								<div class="form-row">
-                                    <div class="form-group col-md-6">
-										<label for="specialization">Patient ID</label>
-										<?php 
-										 $id=$_GET['id'];
-										echo"
-										<input type='text'  class='form-control' id='specialization' name='patient_id' value='{$id}' required>";
-										?>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="Doctor-name">Color</label>
-										<input type="text" class="form-control" placeholder="" id="Doctor-name" name="color" required>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="dob">Constancy</label>
-										<input type="text" placeholder="" class="form-control" id="dob" name="Constancy" required>
-                                    </div>
-									<div class="form-group col-md-6">
-										<label for="about-doctor">Gross Blood</label>
-										<input type="text" placeholder="" class="form-control" id="about-doctor" rows="3" name="groos_blood" required>
-                                    </div>
-									<div class="form-group col-md-6">
-										<label for="password">Mucus</label>
-										<input type="text" placeholder="" class="form-control" id="password" name="mucus" required>
-									</div>
-                                    <div class="form-group col-md-6">
-										<label for="specialization">Occult Blood</label>
-										<input type="text" placeholder="" class="form-control" id="specialization" name="occult_blood" required>
-									</div>
-								
-									<div class="form-group col-md-6">
-										<label for="phone">Pus</label>
-										<input type="text" placeholder="" class="form-control" id="phone" name="pus" required>
-									</div>
-												
-									<div class="form-check col-md-12 mb-2">
-										<div class="text-left">
-											<div class="custom-control custom-checkbox">
-												<input class="custom-control-input" type="checkbox" id="ex-check-2">
-												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
-									</div>
-								</div>
-							</form>
+											<?php
+													$servername = "localhost";
+                                            		$username = "root";
+                                            		$password = "";
 
-						
-							<!-- /Alerts-->
+                                            $dbname = "e-care";
+
+                                            // Create connection
+                                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                            // Check connection
+                                           $id= $_SESSION['username'];
+                                            $sql = "SELECT * FROM hormones_analysis WHERE Patient_ID='$id'";
+                                            $result = mysqli_query($conn, $sql);
+                                            if ($conn->connect_error) {
+                                              die("Connection failed: " . $conn->connect_error);
+                                            }
+                                             if (mysqli_num_rows($result) > 0) {
+                                               while($row =mysqli_fetch_assoc($result)) {
+													$id=$row['Patient_ID'];
+                                                   echo"<td><a  id='name' href='' >".$row['Patient_ID']."</a></td>";
+                                                    echo"<td  >".$row['T3']."</td>";
+                                                  echo"<td id='dob'>".$row['T4']."</td>";
+                                                    echo"<td id='p_n'>".$row["TSH"]."</td>";
+                                                    echo"<td id='p_n'>".$row["Vitmin_B12"]."</td>";
+                                                    echo"<td id='p_n'>".$row["Vitmin_D"]."</td>";
+                                                    echo"	</tr>";
+                                                 }
+                                               }
+
+
+
+                                             else {
+                                             }
+
+
+										    $conn->close();
+
+
+									        ?>
+
+
+
+									</tbody>
+								</table>
+								<!--Export links-->
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center export-pagination">
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
+										</li>
+									</ul>
+								</nav>
+								<!-- /Export links-->
+							
+							</div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
@@ -232,7 +275,7 @@ session_start();
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
-
+	<script src="js/custom-datatables.js"></script>
 </body>
 
 </html>

@@ -186,7 +186,7 @@
 											$servername = "localhost";
                                               $username = "root";
                                               $password = "";
-                                              $dbname = "proclinc";
+                                              $dbname = "e-care";
                                                $namee=$_GET['name'];
                                                $_SESSION['name']=$namee;
                                                echo $_SESSION['name'];

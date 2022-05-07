@@ -78,7 +78,7 @@ session_start();
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
-							<a href="doctor_hormons.php">Show Hormons Test Result</a>
+							<a href="doctor_hormones.php">Show Hormone Test Result</a>
 						</li>
 					
 					</ul>
@@ -89,9 +89,7 @@ session_start();
 				<span class="ti-pencil-alt"></span> Patients
 				</a>
 				<ul class="collapse list-unstyled" id="nav-pattient">
-				<li>
-							<a href="add_patient_file.php">Add Patient File</a>
-						</li>
+				
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>

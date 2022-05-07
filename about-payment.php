@@ -159,7 +159,7 @@
 											$servername = "localhost";
                                               $username = "root";
                                               $password = "";
-                                              $dbname = "proclinc";
+                                              $dbname = "e-care";
                                                $namee=$_GET['name'];
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                          $sql = "SELECT * FROM patients WHERE Full_Name='$namee'";
@@ -224,7 +224,7 @@
 									$username = "root";
 									$password = "";
 
-							$dbname = "proclinc";
+							$dbname = "e-care";
 							$name=$_GET['name'];
 							$_SESSION['discount']=0;
 											$row1;
@@ -243,7 +243,7 @@
 							   while($row =mysqli_fetch_assoc($result)) {
 								if(!strcmp($row['Insurance_Valid'],"Yes")){				   
 									$id=$row['Patiend_ID'];
-									   $sql1 = "SELECT * FROM insurance_comapny WHERE Patient_ID	='$id'";
+									   $sql1 = "SELECT * FROM insurance_company WHERE Patient_ID	='$id'";
 									   $result1 = mysqli_query($conn, $sql1);
 									   if (mysqli_num_rows($result1) > 0) {
 										   while($row1 =mysqli_fetch_assoc($result1)) {

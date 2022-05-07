@@ -38,64 +38,70 @@
 	</div>
 	<!--/Pre Loader -->
 	<div class="wrapper">
-    <nav id="sidebar" class="proclinic-bg">
+		<!-- Sidebar -->
+		<nav id="sidebar" class="proclinic-bg">
 			<div class="sidebar-header">
-				<a href="patient-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
+				<a href="index.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
-              
+
 				<li>
 					<a href="#nav-patients" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Urine Analysis
+						<span class="ti-wheelchair"></span> Patients
 					</a>
 					<ul class="collapse list-unstyled" id="nav-patients">
-					
 						<li>
-							<a href="patient_urine.php">All Urine Reports</a>
+							<a href="add-patient.php">Add Patient</a>
+						</li>
+						<li>
+							<a href="patients.php">All Patients</a>
 						</li>
 					
 					</ul>
 				</li>
 				<li>
 					<a href="#nav-doctors" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Stool Anaylsis
+						<span class="ti-user"></span> Doctors
 					</a>
 					<ul class="collapse list-unstyled" id="nav-doctors">
-						
 						<li>
-							<a href="patient_stool.php">All Stool Reports</a>
+							<a href="add-doctor.html">Add Doctor</a>
+						</li>
+						<li>
+							<a href="doctors.php">All Doctors</a>
 						</li>
 						
 					</ul>
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Appointments
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
-					
 						<li>
-							<a href="patient_hormons.php">All Hormon Reports</a>
+							<a href="add-appointment.php">Add Appointment</a>
+						</li>
+						<li>
+							<a href="appointments.php">All Appointments</a>
 						</li>
 						
 					</ul>
 				</li>
-                <li>
-					<a href="#nav-patientss" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Appointment
+				<li>
+					<a href="#nav-payment" data-toggle="collapse" aria-expanded="false">
+						<span class="ti-money"></span> Payments
 					</a>
-					<ul class="collapse list-unstyled" id="nav-patientss">
-					
+					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="patient_add_appotiment.php">Add Appointment</a>
+							<a href="add-payment.html">Add Payment</a>
 						</li>
-                        <li>
-							<a href="patient_appotiment.php">My Appointments</a>
+						<li>
+							<a href="payments.php">All Payments</a>
 						</li>
 					
 					</ul>
 				</li>
-			
+
 			</ul>
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
@@ -109,6 +115,7 @@
 		<!-- /Sidebar -->
 		<!-- Page Content -->
 		<div id="content">
+			<!-- Top Navigation -->
 			<!-- Top Navigation -->
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
@@ -170,7 +177,7 @@
            $username = "root";
            $password = "";
 
-   $dbname = "proclinc";
+   $dbname = "e-care";
 
    // Create connection
    $conn = new mysqli($servername, $username, $password, $dbname);
@@ -198,12 +205,19 @@
         $time= explode('-',$dutytime);
         $time_split=str_split($dutytime);
         $timestart= $time_split[0];
-        $timeend= $time_split[4];
+		if($time_split[4]==1){
+        $timeend= $time_split[4]*10+$time_split[5];
+		}
+		else{
+			$timeend= $time_split[4]+12;
+		}
         $time_conflict=array();
         $time_availabe=array();
-        $length=abs((int)$time_split[0]-(int)$time_split[4]);
-        for ($x = 0; $x < 6; $x++) {
+        $length=$timeend-$timestart;
+		
+        for ($x = 0; $x < (int)$length; $x++) {
             $timenext=(int)$timestart+1;
+			
 
             if((int)$timenext<12){
             array_push($time_availabe,"$timestart:00AM-$timestart:20AM ");
@@ -223,6 +237,7 @@
 
             }
             $timestart=(int)$timestart+1;
+		
 
         }
         $sql = "SELECT * FROM appointments WHERE Doctor_Name = '$name'";
@@ -291,22 +306,11 @@
     </div>
     <div class="form-group col-md-6">
     <label for="patient-name">Patient Name</label>
-    <input type="text" class="form-control" id="patient-name" placeholder="Patient Name" name="patient_name" rows="3">
+    <input type="text" class="form-control" id="patient-name" placeholder="Patient Name" name="patient_name" rows="3" required>
     </div>
 							
 							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Successfully Done!</strong> Appointment token Generated
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
+						
                             <div class="form-group col-md-6 mb-3">
 										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
 									</div>

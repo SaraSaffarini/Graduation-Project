@@ -200,7 +200,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);

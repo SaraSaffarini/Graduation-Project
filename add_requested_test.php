@@ -3,8 +3,8 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-$dbname = "proclinc";
-session_start();
+$dbname = "e-care";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -14,10 +14,15 @@ if ($conn->connect_error) {
 
 
 
-$id= $_SESSION['id'];
-$sql = "DELETE FROM hormons_analysis  WHERE Patient_ID ='$id'";
+$name=$_POST['name'];
+$id=$_POST['patient_id'];
+$test=$_POST['test'];
+
+$sql = "INSERT INTO requested_tests (Doctor_Name,Patient_Id,Test_Type)
+       VALUES ('$name','$id','$test')";
  if (mysqli_query($conn, $sql)) {
-        header("Location:lab.php");
+        echo "New record has been added successfully !";
+        header('Location:doctor-home.php');
      }
       else {
         echo "Error: " . $sql . ":-" . mysqli_error($conn);

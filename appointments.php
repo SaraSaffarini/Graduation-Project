@@ -1,4 +1,4 @@
-<? php session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -195,7 +195,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);

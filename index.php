@@ -96,7 +96,7 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.php">Add Payment</a>
+							<a href="add-payment.html">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
@@ -180,7 +180,7 @@
 	$username = "root";
 	$password = "";
 
-$dbname = "proclinc";
+$dbname = "e-care";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -217,7 +217,7 @@ if ($result=mysqli_query($conn,$sql)) {
 	$username = "root";
 	$password = "";
 
-$dbname = "proclinc";
+$dbname = "e-care";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

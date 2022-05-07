@@ -15,20 +15,19 @@ if ($conn->connect_error) {
 
 
 $patient_id=$_POST['patient_id'];
-$color=$_POST['color'];
-$apperance=$_POST['apperance'];
-$Leukonyce=$_POST['Leukonyce'];
-$Protin=$_POST['Protin'];
-$blood=$_POST['blood'];
-$Gravity=$_POST['Gravity'];
-$ketonic=$_POST['ketonic'];
+$T3=$_POST['T3'];
+$T4=$_POST['T4'];
+$TSH=$_POST['TSH'];
+$B12=$_POST['B12'];
+$D=$_POST['D'];
+;
 
 
-$sql = "INSERT INTO urine_analysis (id,color,Apperance,leukonyce,Protin,blood,gravity,ketonic)
-       VALUES ('$patient_id','$color','$apperance','$Leukonyce','$Protin','$blood','$Gravity','$ketonic')";
+$sql = "INSERT INTO hormones_analysis (Patient_ID,T3,T4,TSH,Vitmin_B12,Vitmin_D)
+       VALUES ('$patient_id','$T3','$T4','$TSH','$B12','$D')";
  if (mysqli_query($conn, $sql)) {
         echo "New record has been added successfully !";
-
+        
         header('Location:lab.php');
 
      }

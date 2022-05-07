@@ -178,7 +178,7 @@ session_start();?>
 							$servername = "localhost";
                                                                           $username = "root";
                                                                           $password = "";
-                                                                          $dbname = "proclinc";
+                                                                          $dbname = "e-care";
                                                                            $namee=$_GET['name'];
                                                                     $conn = new mysqli($servername, $username, $password, $dbname);
                                                                      $sql = "SELECT * FROM patients WHERE Full_Name='$namee'";

@@ -177,7 +177,7 @@
 											$servername = "localhost";
                                               $username = "root";
                                               $password = "";
-                                              $dbname = "proclinc";
+                                              $dbname = "e-care";
                                                $id=$_GET['id'];
 											   $_SESSION['id']=$id;
                                         $conn = new mysqli($servername, $username, $password, $dbname);

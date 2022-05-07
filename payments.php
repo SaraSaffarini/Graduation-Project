@@ -197,7 +197,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 											$_SESSION['discount']=0;
 											$row1;
 											$discount;
@@ -216,7 +216,7 @@
 												   if(!strcmp($row['Insurance_Valid'],"Yes")){
 													   
 												 $id=$row['Patiend_ID'];
-													$sql1 = "SELECT * FROM insurance_comapny WHERE Patient_ID	='$id'";
+													$sql1 = "SELECT * FROM insurance_company WHERE Patient_ID	='$id'";
 													$result1 = mysqli_query($conn, $sql1);
 													if (mysqli_num_rows($result1) > 0) {
 														while($row1 =mysqli_fetch_assoc($result1)) {

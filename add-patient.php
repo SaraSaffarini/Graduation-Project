@@ -174,7 +174,7 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Add Patient</h3>
-							<form id="loginformm" method="post" action="add_patient.php" >
+							<form id="loginformm" method="post" action="">
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-name">Patient Name</label>
@@ -257,3 +257,43 @@
 </body>
 
 </html>
+<script>
+	function id_verf(id){
+		let a=[];
+		let b= [1,2,1,2,1,2,1,2];
+		let c =[];
+		let d=[];
+		let sum =0;
+		var digits = id.toString().split('').map(iNum => parseInt(iNum, 10));
+		
+
+alert(digits.length);
+for(var i=0;i<b.length;i++){
+	c[i]=digits[i]*b[i];
+}
+for(var i=0;i<c.length;i++){
+if(c[i]<10){
+	d[i]=c[i];
+}
+else{
+	d[i]=((c[i]%10)+(c[i]-(c[i]%10))/10);
+}
+}	
+for (let i = 0; i < d.length; i++) {
+    sum += d[i];
+}
+
+if((10-(sum%10))==digits[8]&& digits.length==9){
+
+	document.getElementById("loginformm").action = "add_patient.php";
+document.getElementById("loginformm").submit();
+}
+else{
+	alert(" ID is not valid");
+	window.location.href = "http://localhost/graduation-project-testing/add-patient.php";
+
+}
+
+	
+	}
+</script>

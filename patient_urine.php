@@ -75,12 +75,12 @@
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Hormone Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
 					
 						<li>
-							<a href="patient_hormons.php">All Hormon Reports</a>
+							<a href="patient_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
@@ -190,7 +190,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);

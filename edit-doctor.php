@@ -176,7 +176,7 @@
                             							$servername = "localhost";
                                                                                                       $username = "root";
                                                                                                       $password = "";
-                                                                                                      $dbname = "proclinc";
+                                                                                                      $dbname = "e-care";
                                                                                                        $namee=$_GET['name'];
                                                                                                 $conn = new mysqli($servername, $username, $password, $dbname);
                                                                                                  $sql = "SELECT * FROM doctors WHERE Full_Name='$namee'";
@@ -191,9 +191,8 @@
                                                                                                             $address=$row['Address'];
                                                                                                            $email=$row['email'];
                                                                                                            $phone=$row['Phone_Number'];
-                                                                                                           $password=$row['password'];
+                                                                                                           
                                                                                                            $department=$row['Department'];
-                                                                                                           $doctor_details=$row['Doctor_Details'];
                                                                                                            $duty_time=$row['Duty_Time'];
                                                                                                            $specialzation=$row['Specialzation'];
                                                                                                            $dob=$row['Date_of_Birth'];

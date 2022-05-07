@@ -26,6 +26,10 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 	<script src="js/modernizr.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css" type="text/css" media="all">
 </head>
 
 <body>
@@ -198,17 +202,17 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Add Appointment</h3>
-							<form method="post" id="form">
+							<form method="post" id="form" name="form">
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-id">Patient ID</label>
-										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" required>
+										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" name="id" required>
 									</div>
 									<div class="form-group col-md-6">
     
     
 									<label for="appointment-date">Appointment Date</label>
-  								  <input type="date" placeholder="Appointment Date" class="form-control" id="appointment-date" required>	
+  								<?php  echo "  <input type='date' placeholder='Appointment Date'class='form-control' min='".date('Y-m-d')."' id='appointment-date' required>	";?>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="doctor-name">Doctor Name</label>
@@ -218,7 +222,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -255,23 +259,12 @@
 										</div>
 									</div>
 									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Next</button>
+										<button type="submit"  onclick="id_verf(document.form.id.value)" class="btn btn-primary btn-lg">Next</button>
 									</div>
 								</div>
 							</form>
 							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Successfully Done!</strong> Appointment token Generated
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
+							
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -287,12 +280,7 @@
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
+>
     
     <!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
@@ -304,3 +292,48 @@
 </body>
 
 </html>
+<script type="text/javascript">
+      $('.datepicker').datepicker({
+		format: "yyyy/mm/dd",
+        minDate: new Date(),
+      });
+ 
+</script>
+<script>
+	function id_verf(id){
+		let a=[];
+		let b= [1,2,1,2,1,2,1,2];
+		let c =[];
+		let d=[];
+		let sum =0;
+		var digits = id.toString().split('').map(iNum => parseInt(iNum, 10));
+		
+
+
+for(var i=0;i<b.length;i++){
+	c[i]=digits[i]*b[i];
+}
+for(var i=0;i<c.length;i++){
+if(c[i]<10){
+	d[i]=c[i];
+}
+else{
+	d[i]=((c[i]%10)+(c[i]-(c[i]%10))/10);
+}
+}	
+for (let i = 0; i < d.length; i++) {
+    sum += d[i];
+}
+
+if((10-(sum%10))==digits[8]){
+	alert("true");
+}
+else{
+	alert(" ID is not valid");
+	window.location.href = "http://localhost/graduation-project-testing/add-appointment.php";
+
+}
+
+	
+	}
+</script>
