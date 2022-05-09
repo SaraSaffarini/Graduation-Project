@@ -245,9 +245,7 @@
 										</li>
 									</ul>
 								</nav>
-								<!-- /Export links-->
-								<button type="button" class="btn btn-danger mt-3 mb-0"><span class="ti-trash"></span> DELETE</button>
-								<button type="button" class="btn btn-primary mt-3 mb-0"><span class="ti-pencil-alt"></span> EDIT</button>
+						
 							</div>
 						</div>
 					</div>

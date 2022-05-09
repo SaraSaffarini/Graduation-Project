@@ -160,6 +160,7 @@ session_start();
 								<table class="table table-bordered table-striped">
 									<thead>
 										<tr>
+											<th>Status</th>
 											<th>Patient ID</th>
 											<th>Doctor</th>
 											<th>Requested Test</th>
@@ -194,23 +195,25 @@ session_start();
 
                                       echo"  
 										<tr>
+										<td><button type='button' class='btn btn-danger'><a href='delete_test.php?id={$id}'>Done</a></button></td>
+
 											<td>".$row['Patient_Id']."</td>
 											<td>".$row['Doctor_Name']."</td>";
 											if ($row['Test_Type']=="Urine Test"){
-												echo"<td><a href='urine_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
+												echo"<td title='Click here to add test result'><a href='urine_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
 
 
 
 											}
 											if ($row['Test_Type']=="Stool Test"){
-												echo"<td><a href='stool_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
+												echo"<td title='Click here to add test result'><a href='stool_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
 
 												
 
 											}
                                      
 											if ($row['Test_Type']=="Hormones Test"){
-												echo"<td><a href='hormones_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
+												echo"<td title='Click here to add test result'><a href='hormones_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
 
 												
 

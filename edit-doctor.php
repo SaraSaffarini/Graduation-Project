@@ -233,10 +233,7 @@
                             											<option>Other</option>
                             										</select>
                             									</div>
-                            									<div class='form-group col-md-6'>
-                            										<label for='about-doctor'>Doctor Details</label>
-                            										<textarea placeholder='Doctor Details' class='form-control' id='about-doctor' rows='3' name='doctor_details'> ".$doctor_details."</textarea>
-                                                                </div>
+                            									
                                                                 <div class='form-group col-md-6'>
                             										<label for='address'>Address</label>
                             										<textarea placeholder='Address' class='form-control'  id='address' rows='3' name='address'>".$address."</textarea>

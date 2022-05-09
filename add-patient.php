@@ -174,7 +174,7 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Add Patient</h3>
-							<form id="loginformm" method="post" action="">
+							<form id="loginformm" method="post"name="form" action="">
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-name">Patient Name</label>
@@ -186,7 +186,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label for="age">ID</label>
-										<input type="number" placeholder="4523..." class="form-control" id="id_number" name="id_number" required>
+										<input type="text" placeholder="4523..." class="form-control" id="id_number" name="id_number" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="phone">Phone</label>
@@ -219,7 +219,7 @@
 										</div>
 									</div>
 									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+										<button type="submit" onclick="id_verf(document.form.id_number.value)" class="btn btn-primary btn-lg">Submit</button>
 									</div>
 								</div>
 							</form>
@@ -267,7 +267,6 @@
 		var digits = id.toString().split('').map(iNum => parseInt(iNum, 10));
 		
 
-alert(digits.length);
 for(var i=0;i<b.length;i++){
 	c[i]=digits[i]*b[i];
 }
@@ -290,7 +289,6 @@ document.getElementById("loginformm").submit();
 }
 else{
 	alert(" ID is not valid");
-	window.location.href = "http://localhost/graduation-project-testing/add-patient.php";
 
 }
 

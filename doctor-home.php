@@ -216,8 +216,8 @@ session_start();
                                       echo"  
 										<tr>
 										<td><button type='button' class='btn btn-danger'><a href='delete_appotiment1.php?name={$name}'>Done</a></button></td>
-											<td id='name'><a href='request_test_doctor.php?id={$id} && name={$doctorname}'>".$row['Patient_Name']."</a></td>
-											<td id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>".$row['Patient_ID']."</a></td>
+											<td title=' Click here to request test' id='name'><a href='request_test_doctor.php?id={$id} && name={$doctorname}'>".$row['Patient_Name']."</a></td>
+											<td title=' Click here to add patient file' id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>".$row['Patient_ID']."</a></td>
 									
 											<td>".$doctorname."</td>
 											<td>".$row['Department']."</td>
