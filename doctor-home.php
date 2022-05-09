@@ -33,7 +33,6 @@ session_start();
 <body>
 
 
-
 	<!-- Pre Loader -->
 	<div class="loading">
 		<div class="spinner">
@@ -179,6 +178,8 @@ session_start();
 										</tr>
 									</thead>
 									<tbody>
+									
+ 
                                         <?php 
                                         		$servername = "localhost";
                                                 $username = "root";
@@ -204,7 +205,7 @@ session_start();
                                            }
                                         }
                                          
-                                        $sql = "SELECT * FROM appointments WHERE Doctor_Name='$doctorname'";
+                                        $sql = "SELECT * FROM appointments WHERE Doctor_Name='$doctorname' AND Existing=1";
                                         $result1 = mysqli_query($conn, $sql);
                                         $datenow = Date('Y-m-d');
                                          if (mysqli_num_rows($result1) > 0) {
@@ -216,7 +217,8 @@ session_start();
                                       echo"  
 										<tr>
 										<td><button type='button' class='btn btn-danger'><a href='delete_appotiment1.php?name={$name}'>Done</a></button></td>
-											<td title=' Click here to request test' id='name'><a href='request_test_doctor.php?id={$id} && name={$doctorname}'>".$row['Patient_Name']."</a></td>
+
+										<td title=' Click here to request test' id='name'><a href='request_test_doctor.php?id={$id} && name={$doctorname}'>".$row['Patient_Name']."</a></td>
 											<td title=' Click here to add patient file' id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>".$row['Patient_ID']."</a></td>
 									
 											<td>".$doctorname."</td>

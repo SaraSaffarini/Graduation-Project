@@ -182,7 +182,7 @@ session_start();
                                             die("Connection failed: " . $conn->connect_error);
                                           }
 
-                                        $sql2= "SELECT * FROM requested_tests ";
+                                        $sql2= "SELECT * FROM `requested_tests` WHERE State = 1";
                                         
                                         $result = mysqli_query($conn, $sql2);
                                        

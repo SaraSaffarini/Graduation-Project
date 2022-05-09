@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 
 $id= $_GET['id'];
-$sql = "DELETE FROM requested_tests  WHERE Patient_Id ='$id'";
+$sql = "UPDATE `requested_tests` SET State='0' WHERE Patient_Id = '$id'";
  if (mysqli_query($conn, $sql)) {
         header("Location:lab.php");
      }

@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 
 $id= $_GET['name'];
-$sql = "DELETE FROM appointments  WHERE Patient_Name ='$id'";
+$sql = "UPDATE appointments SET Existing = 0 WHERE Patient_Name ='$id'";
  if (mysqli_query($conn, $sql)) {
         header("Location:doctor-home.php");
      }
@@ -23,5 +23,5 @@ $sql = "DELETE FROM appointments  WHERE Patient_Name ='$id'";
         echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
      mysqli_close($conn);
-
+     echo "Error:";
 
