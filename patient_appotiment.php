@@ -178,6 +178,7 @@
 											<th>Token Number</th>
 											<th>Doctor Name</th>
 											<th>Problem</th>
+											<th>Appointment Date</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -213,6 +214,7 @@
 											<td>".$row['Token_Num']."</td>
 											<td>".$row['Doctor_Name']."</td>
 											<td>".$row['Problem_Desreption']."</td>
+											<td>".$row['Appotiment_Date']."</td>
                                         </tr>";
                                    
 											   }

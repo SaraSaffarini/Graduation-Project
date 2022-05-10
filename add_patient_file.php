@@ -1,9 +1,9 @@
-<?php 
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
 <html>
-	
+
 
 <head>
 	<meta charset="utf-8">
@@ -29,7 +29,7 @@ session_start();
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 
 	<script src="js/modernizr.min.js"></script>
-	
+
 
 </head>
 
@@ -53,17 +53,17 @@ session_start();
 				<a href="doctor-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
-                <li>
+				<li>
 
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
 						<span class="ti-pencil-alt"></span> Appointments
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
-						
+
 						<li>
 							<a href="doctor-home.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -74,27 +74,27 @@ session_start();
 						<li>
 							<a href="doctor_urine.php">Show Urine Test Result</a>
 						</li>
-                        <li>
+						<li>
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
 							<a href="doctor_hormones.php">Show Hormone Test Result</a>
 						</li>
-					
+
 					</ul>
-		
+
 				<li>
 
 					<a href="#nav-pattient" data-toggle="collapse" aria-expanded="false">
-				<span class="ti-pencil-alt"></span> Patients
-				</a>
-				<ul class="collapse list-unstyled" id="nav-pattient">
-				
+						<span class="ti-pencil-alt"></span> Patients
+					</a>
+					<ul class="collapse list-unstyled" id="nav-pattient">
+
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>
-	
-				</ul>
+
+					</ul>
 				</li>
 
 			</ul>
@@ -103,9 +103,11 @@ session_start();
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -119,21 +121,21 @@ session_start();
 						<a href="doctor-home.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -141,7 +143,7 @@ session_start();
 			<!-- Page Title -->
 			<div class="row no-margin-padding">
 				<div class="col-md-6">
-					
+
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">
@@ -161,43 +163,43 @@ session_start();
 
 
 				<div class="row">
-                <div class="col-md-12">
+					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Add Patient File</h3>
 
 							<form method='post' id="form" action='add-patient-file.php'>
 								<div class="form-row">
-                                    <div class="form-group col-md-6">
+									<div class="form-group col-md-6">
 										<label for="specialization">Patient ID</label>
-										 <?php
-										 $id=$_GET['id'];
-										 echo"
+										<?php
+										$id = $_GET['id'];
+										echo "
 										<input type='text'  class='form-control' id='specialization' name='patient_id' required  value='{$id}'>";
 										?>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="Doctor-name">Visit_Date</label>
-										<input type="date" class="form-control" placeholder="" id="Doctor-name" name="visit_date"  value="<?php echo date('Y-m-d'); ?>" required >
+										<input type="date" class="form-control" placeholder="" id="Doctor-name" name="visit_date" value="<?php echo date('Y-m-d'); ?>" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="dob">Diagnosis</label>
 										<input type="text" placeholder="" class="form-control" id="dob" name="diagnosis" required>
-                                    </div>
+									</div>
 									<div class="form-group col-md-6">
 										<label for="about-doctor">Allergies</label>
-										<input type="text" placeholder="" class="form-control" id="about-doctor" rows="3" name="allergies" required> 
-                                    </div>
-                                    <div class="form-group col-md-6">
+										<input type="text" placeholder="" class="form-control" id="about-doctor" rows="3" name="allergies" required>
+									</div>
+									<div class="form-group col-md-6">
 										<label for="about-doctor1">Doctor Name</label>
 										<?php
-										 $doctorname=$_GET['name'];
-										 echo"
+										$doctorname = $_GET['name'];
+										echo "
 										<input type='text' placeholder='' class='form-control' id='about-doctor1' rows='3' name='name' required value='{$doctorname}'>";
-                                    ?>
-										</div>
-									
-                                   
-												
+										?>
+									</div>
+
+
+
 									<div class="form-check col-md-12 mb-2">
 										<div class="text-left">
 											<div class="custom-control custom-checkbox">
@@ -212,29 +214,29 @@ session_start();
 								</div>
 							</form>
 
-						
+
 							<!-- /Alerts-->
 						</div>
 					</div>
 				</div>
 
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					
+				<!-- /Widget Item -->
+				<!-- Widget Item -->
 
-				</div>
 
 			</div>
-			<!-- /Main Content -->
+
 		</div>
-		<!-- /Page Content -->
+		<!-- /Main Content -->
+	</div>
+	<!-- /Page Content -->
 	</div>
 	<!-- Back to Top -->
 	<a id="back-to-top" href="#" class="back-to-top">
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	
+
 	<!-- Jquery Library-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<!-- Popper Library-->
@@ -248,7 +250,7 @@ session_start();
 
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
-	
+
 </body>
 
 </html>

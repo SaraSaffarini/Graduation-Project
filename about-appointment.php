@@ -2,6 +2,7 @@
 <html>
 <?php session_start();
 ?>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +57,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -70,7 +71,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -84,7 +85,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -93,12 +94,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -106,9 +107,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -123,21 +126,21 @@
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -148,13 +151,13 @@
 					<h3 class="block-title">Appointment Details</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Appointments</li>
+						</li>
+						<li class="breadcrumb-item">Appointments</li>
 						<li class="breadcrumb-item active">Appointment Details</li>
 					</ol>
 				</div>
@@ -165,102 +168,101 @@
 			<!-- Main Content -->
 			<div class="container-fluid">
 
-                <div class="row">
-                    <!-- Widget Item -->
-                    <div class="col-md-12">
-                        <div class="widget-area-2 proclinic-box-shadow">
-                            <h3 class="widget-title">Appointment Details</h3>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-									<?php
-											$servername = "localhost";
-                                              $username = "root";
-                                              $password = "";
-                                              $dbname = "e-care";
-                                               $id=$_GET['id'];
-											   $_SESSION['id']=$id;
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                         $sql = "SELECT * FROM appointments WHERE Patient_ID='$id'";
-                                          $result = mysqli_query($conn, $sql);
-                                           if ($conn->connect_error) {
-                                             die("Connection failed: " . $conn->connect_error);
-                                                }
-                                                 if (mysqli_num_rows($result) > 0) {
-                                                 if($row =mysqli_fetch_assoc($result)) {
-													echo" 
+				<div class="row">
+					<!-- Widget Item -->
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title">Appointment Details</h3>
+							<div class="table-responsive">
+								<table class="table table-bordered table-striped">
+									<tbody>
+										<?php
+										$servername = "localhost";
+										$username = "root";
+										$password = "";
+										$dbname = "e-care";
+										$id = $_GET['id'];
+										$_SESSION['id'] = $id;
+										$conn = new mysqli($servername, $username, $password, $dbname);
+										$sql = "SELECT * FROM appointments WHERE Patient_ID='$id'";
+										$result = mysqli_query($conn, $sql);
+										if ($conn->connect_error) {
+											die("Connection failed: " . $conn->connect_error);
+										}
+										if (mysqli_num_rows($result) > 0) {
+											if ($row = mysqli_fetch_assoc($result)) {
+												echo " 
                                         <tr>
                                             <td><strong>Patient ID</strong></td>
-                                            <td id ='id'>".$row['Patient_ID']."</td>
+                                            <td id ='id'>" . $row['Patient_ID'] . "</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Department</strong></td>
-                                            <td>".$row['Department']."</td>
+                                            <td>" . $row['Department'] . "</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Doctor Name</strong></td>
-                                            <td>".$row['Doctor_Name']."</td>
+                                            <td>" . $row['Doctor_Name'] . "</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Appointment Date</strong></td>
-                                            <td>".$row['Appotiment_Date']."</td>
+                                            <td>" . $row['Appotiment_Date'] . "</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Time Slot </strong></td>
-                                            <td>".$row['Appotiment_Time']."</td>
+                                            <td>" . $row['Appotiment_Time'] . "</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Token Number </strong></td>
-                                            <td>".$row['Token_Num']."</td>
+                                            <td>" . $row['Token_Num'] . "</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Problem</strong></td>
-                                            <td>".$row['Problem_Desreption']."</td>
+                                            <td>" . $row['Problem_Desreption'] . "</td>
                                         </tr>";
-								}
-							}
+											}
+										}
 										?>
 										<script>
-								function delete_p(){
-								const name =document.getElementById('id').value;
-								alert(name);
-								        if(confirm("Are you sure you want to delete this appointment?")){
-								            location.href='delete_appotiment.php';
+											function delete_p() {
+												const name = document.getElementById('id').value;
+												alert(name);
+												if (confirm("Are you sure you want to delete this appointment?")) {
+													location.href = 'delete_appotiment.php';
 
-								        }
+												}
 
 
-								}
+											}
+										</script>
+									</tbody>
+								</table>
+								<!--Export links-->
+								<nav aria-label="Page navigation example">
+									<ul class="pagination export-pagination">
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-printer"></span> print</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
+										</li>
+									</ul>
+								</nav>
+								<!-- /Export links-->
 
-								</script>
-                                    </tbody>
-                                </table>
-                                <!--Export links-->
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination export-pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-download"></span> csv</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-printer"></span> print</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <!-- /Export links-->
-                            
-                                <button type="button" class="btn btn-danger mb-3" onclick="delete_p()"><span class="ti-trash"></span> Delete
-                                    Appointment</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Widget Item -->
-                </div>
+								<button type="button" class="btn btn-danger mb-3" onclick="delete_p()"><span class="ti-trash"></span> Delete
+									Appointment</button>
+							</div>
+						</div>
+					</div>
+					<!-- /Widget Item -->
+				</div>
 			</div>
 			<!-- /Main Content -->
 		</div>
@@ -276,12 +278,12 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 

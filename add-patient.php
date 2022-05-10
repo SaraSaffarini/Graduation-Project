@@ -60,7 +60,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -74,7 +74,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -88,7 +88,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -97,12 +97,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -110,9 +110,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -120,28 +122,28 @@
 		<!-- Page Content -->
 		<div id="content">
 			<!-- Top Navigation -->
-				<!-- Top Navigation -->
-				<nav class="navbar navbar-default">
+			<!-- Top Navigation -->
+			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="responsive-logo">
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -152,13 +154,13 @@
 					<h3 class="block-title">Add Patient</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Patients</li>
+						</li>
+						<li class="breadcrumb-item">Patients</li>
 						<li class="breadcrumb-item active">Add Patient</li>
 					</ol>
 				</div>
@@ -174,11 +176,11 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Add Patient</h3>
-							<form id="loginformm" method="post"name="form" action="">
+							<form id="loginformm" method="post" name="form" action="">
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-name">Patient Name</label>
-										<input type="text" class="form-control" placeholder="Patient name" name="patient-name" id="patient-name" required> 
+										<input type="text" class="form-control" placeholder="Patient name" name="patient-name" id="patient-name" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="dob">Date Of Birth</label>
@@ -208,8 +210,8 @@
 										<label for="exampleFormControlTextarea1">Address</label>
 										<textarea placeholder="Address" class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
 									</div>
-									
-																		
+
+
 									<div class="form-check col-md-12 mb-2">
 										<div class="text-left">
 											<div class="custom-control custom-checkbox">
@@ -224,7 +226,7 @@
 								</div>
 							</form>
 							<!-- Alerts-->
-							
+
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -245,12 +247,12 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 
@@ -258,40 +260,38 @@
 
 </html>
 <script>
-	function id_verf(id){
-		let a=[];
-		let b= [1,2,1,2,1,2,1,2];
-		let c =[];
-		let d=[];
-		let sum =0;
+	function id_verf(id) {
+		let a = [];
+		let b = [1, 2, 1, 2, 1, 2, 1, 2];
+		let c = [];
+		let d = [];
+		let sum = 0;
 		var digits = id.toString().split('').map(iNum => parseInt(iNum, 10));
-		
 
-for(var i=0;i<b.length;i++){
-	c[i]=digits[i]*b[i];
-}
-for(var i=0;i<c.length;i++){
-if(c[i]<10){
-	d[i]=c[i];
-}
-else{
-	d[i]=((c[i]%10)+(c[i]-(c[i]%10))/10);
-}
-}	
-for (let i = 0; i < d.length; i++) {
-    sum += d[i];
-}
 
-if((10-(sum%10))==digits[8]&& digits.length==9){
+		for (var i = 0; i < b.length; i++) {
+			c[i] = digits[i] * b[i];
+		}
+		for (var i = 0; i < c.length; i++) {
+			if (c[i] < 10) {
+				d[i] = c[i];
+			} else {
+				d[i] = ((c[i] % 10) + (c[i] - (c[i] % 10)) / 10);
+			}
+		}
+		for (let i = 0; i < d.length; i++) {
+			sum += d[i];
+		}
 
-	document.getElementById("loginformm").action = "add_patient.php";
-document.getElementById("loginformm").submit();
-}
-else{
-	alert(" ID is not valid");
+		if ((10 - (sum % 10)) == digits[8] && digits.length == 9) {
 
-}
+			document.getElementById("loginformm").action = "add_patient.php";
+			document.getElementById("loginformm").submit();
+		} else {
+			alert(" ID is not valid");
 
-	
+		}
+
+
 	}
 </script>

@@ -57,7 +57,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -71,7 +71,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -85,7 +85,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -94,12 +94,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -107,9 +107,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -124,21 +126,21 @@
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -149,13 +151,13 @@
 					<h3 class="block-title">Appointments</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Appointments</li>
+						</li>
+						<li class="breadcrumb-item">Appointments</li>
 						<li class="breadcrumb-item active">Appointments List</li>
 					</ol>
 				</div>
@@ -171,6 +173,14 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Appointments List</h3>
+							<form method='post' action=''>
+								Start Date <input type='date' id="fromDate" name='fromDate' onchange='handleChangeDate()' value='<?php if (isset($_POST['fromDate'])) echo $_POST['fromDate'] ?>'>
+
+								End Date <input type='date' id="endDate" name='endDate' value='<?php if (isset($_POST['endDate']))
+																									echo $_POST['fromDate']; ?>'>
+
+								<input type='submit' name='but_search' value='Search'>
+							</form>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
@@ -181,53 +191,69 @@
 													<label class="custom-control-label" for="select-all"></label>
 												</div>
 											</th>
-											
+
 											<th>Patient ID</th>
 											<th>Token Number</th>
 											<th>Doctor Name</th>
+											<th> Appointment Date</th>
 											<th>Problem</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-										<?php
-													$servername = "localhost";
-                                            		$username = "root";
-                                            		$password = "";
+											<?php
+											$servername = "localhost";
+											$username = "root";
+											$password = "";
 
-                                            $dbname = "e-care";
+											$dbname = "e-care";
 
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            // Check connection
-                                            $sql = "SELECT * FROM appointments";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($conn->connect_error) {
-                                              die("Connection failed: " . $conn->connect_error);
-                                            }
-                                             if (mysqli_num_rows($result) > 0) {
-                                               while($row =mysqli_fetch_assoc($result)) {
-												   echo"
+											// Create connection
+											$conn = new mysqli($servername, $username, $password, $dbname);
+											// Check connection
+											$sql = "SELECT * FROM appointments WHERE 1";
+
+											if (isset($_POST['but_search'])) {
+												$fromDate = $_POST['fromDate'];
+												$endDate = $_POST['endDate'];
+
+												if (!empty($fromDate) && !empty($endDate)) {
+													$sql .= " and Appotiment_Date 
+																between '" . $fromDate . "' and '" . $endDate . "' ";
+												}
+											}
+
+											// Sort
+											$sql .= " ORDER BY Appotiment_Date ASC";
+
+
+											$result = mysqli_query($conn, $sql);
+											if ($conn->connect_error) {
+												die("Connection failed: " . $conn->connect_error);
+											}
+											if (mysqli_num_rows($result) > 0) {
+												while ($row = mysqli_fetch_assoc($result)) {
+													echo "
 											<td>
 												<div class='custom-control custom-checkbox'>
 													<input class='custom-control-input' type='checkbox' id='1'>
 													<label class='custom-control-label' for='1'></label>
 												</div>
 											</td>";
-											$id=$row['Patient_ID'];
-										echo"
-										<td><a href='about-appointment.php?id=$id'>".$row['Patient_ID']."</a></td>
-											<td>".$row['Token_Num']."</td>
-											<td>".$row['Doctor_Name']."</td>
-											<td>".$row['Problem_Desreption']."</td>
+													$id = $row['Patient_ID'];
+													echo "
+										<td><a href='about-appointment.php?id=$id'>" . $row['Patient_ID'] . "</a></td>
+											<td>" . $row['Token_Num'] . "</td>
+											<td>" . $row['Doctor_Name'] . "</td>
+											<td>" . $row['Appotiment_Date'] . "</td>
+											<td>" . $row['Problem_Desreption'] . "</td>
                                         </tr>";
-                                   
-											   }
+												}
 											}
-											   ?>
+											?>
 									</tbody>
-                                </table>
-                                
+								</table>
+
 								<!--Export links-->
 								<nav aria-label="Page navigation example">
 									<ul class="pagination justify-content-center export-pagination">
@@ -235,7 +261,7 @@
 											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
 										</li>
 										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
+											<a class="page-link" href="#"><span class="ti-printer"></span> print</a>
 										</li>
 										<li class="page-item">
 											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
@@ -245,7 +271,7 @@
 										</li>
 									</ul>
 								</nav>
-						
+
 							</div>
 						</div>
 					</div>
@@ -266,15 +292,30 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 	<script src="js/custom-datatables.js"></script>
+	<script>
+		if (window.history.replaceState) {
+			window.history.replaceState(null, null, window.location.href);
+		}
+
+		function handleChangeDate() {
+			var startDate = document.getElementById("fromDate").value;
+			if (startDate) {
+				document.getElementById("endDate").setAttribute("min", startDate);
+				if (document.getElementById("endDate").value < startDate) {
+					document.getElementById("endDate").value = startDate
+				}
+			}
+		}
+	</script>
 </body>
 
 </html>

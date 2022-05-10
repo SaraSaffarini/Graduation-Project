@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <?php
- session_start();
- ?>
+session_start();
+?>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
 	<!-- Fav  Icon Link -->
 	<link rel="shortcut icon" type="image/png" href="images/fav.png">
 	<!-- Bootstrap core CSS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- themify icons CSS -->
@@ -63,7 +63,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -77,7 +77,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -91,7 +91,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -100,12 +100,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -113,9 +113,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -130,21 +132,21 @@
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -155,13 +157,13 @@
 					<h3 class="block-title">Patient Details</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Patients</li>
+						</li>
+						<li class="breadcrumb-item">Patients</li>
 						<li class="breadcrumb-item active">Patient Details</li>
 					</ol>
 				</div>
@@ -182,125 +184,125 @@
 									<tbody>
 										<tr>
 
-										<?php
+											<?php
 											$servername = "localhost";
-                                              $username = "root";
-                                              $password = "";
-                                              $dbname = "e-care";
-                                               $namee=$_GET['name'];
-                                               $_SESSION['name']=$namee;
-                                               echo $_SESSION['name'];
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                         $sql = "SELECT * FROM patients WHERE Full_Name='$namee'";
-                                          $result = mysqli_query($conn, $sql);
-                                           if ($conn->connect_error) {
-                                             die("Connection failed: " . $conn->connect_error);
-                                                }
-                                                 if (mysqli_num_rows($result) > 0) {
-                                                   if($row =mysqli_fetch_assoc($result)) {
+											$username = "root";
+											$password = "";
+											$dbname = "e-care";
+											$namee = $_GET['name'];
+											$_SESSION['name'] = $namee;
+											echo $_SESSION['name'];
+											$conn = new mysqli($servername, $username, $password, $dbname);
+											$sql = "SELECT * FROM patients WHERE Full_Name='$namee'";
+											$result = mysqli_query($conn, $sql);
+											if ($conn->connect_error) {
+												die("Connection failed: " . $conn->connect_error);
+											}
+											if (mysqli_num_rows($result) > 0) {
+												if ($row = mysqli_fetch_assoc($result)) {
 
-										echo"<td ><strong>Name</strong></td>";
-										echo"<td id='name'>".$row['Full_Name']."</td>";
+													echo "<td ><strong>Name</strong></td>";
+													echo "<td id='name'>" . $row['Full_Name'] . "</td>";
 
 
 
-									echo"	</tr>";
-										echo"<tr>";
-										echo"	<td><strong>Date Of Birth</strong> </td>";
-										echo"	<td>".$row['Date_Of_Birth']."</td>";
-										echo"</tr>
+													echo "	</tr>";
+													echo "<tr>";
+													echo "	<td><strong>Date Of Birth</strong> </td>";
+													echo "	<td>" . $row['Date_Of_Birth'] . "</td>";
+													echo "</tr>
 										<tr>
 											<td><strong>Gender</strong></td>";
-											echo"<td>".$row['Gender']."</td>";
-										echo"</tr>";
-									echo"<tr>";
-										echo"<td><strong>Address</strong></td>";
-										echo"<td>".$row['Address']."</td>";
-									echo"</tr>";
-										echo"<tr>";
-											echo"<td><strong>Phone </strong></td>";
-									       echo"<td>".$row['Phone_Number']."</td>";
-										echo"</tr>";
-										echo"<tr><td><strong>Email</strong></td>";
-											echo"<td>".$row['Email']."</td>";
-                                        echo"</tr>";
-									echo"</tbody>";
-					        	    echo"</table>";
-							echo"</div>";
-							     }
-							     }
+													echo "<td>" . $row['Gender'] . "</td>";
+													echo "</tr>";
+													echo "<tr>";
+													echo "<td><strong>Address</strong></td>";
+													echo "<td>" . $row['Address'] . "</td>";
+													echo "</tr>";
+													echo "<tr>";
+													echo "<td><strong>Phone </strong></td>";
+													echo "<td>" . $row['Phone_Number'] . "</td>";
+													echo "</tr>";
+													echo "<tr><td><strong>Email</strong></td>";
+													echo "<td>" . $row['Email'] . "</td>";
+													echo "</tr>";
+													echo "</tbody>";
+													echo "</table>";
+													echo "</div>";
+												}
+											}
 
 
-                            	    $conn->close();
+											$conn->close();
 
-							    ?>
-								<!--Export links-->
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center export-pagination">
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
-										</li>
-									</ul>
-								</nav>
-								<script>
-								function delete_p(){
-								const name =document.getElementById('name').value;
-								alert(name);
-								        if(confirm("Are you sure you want to delete this patient?")){
-								            location.href='delete_patient.php';
+											?>
+											<!--Export links-->
+											<nav aria-label="Page navigation example">
+												<ul class="pagination justify-content-center export-pagination">
+													<li class="page-item">
+														<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
+													</li>
+													<li class="page-item">
+														<a class="page-link" href="#"><span class="ti-printer"></span> print</a>
+													</li>
+													<li class="page-item">
+														<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
+													</li>
+													<li class="page-item">
+														<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
+													</li>
+												</ul>
+											</nav>
+											<script>
+												function delete_p() {
+													const name = document.getElementById('name').value;
+													alert(name);
+													if (confirm("Are you sure you want to delete this patient?")) {
+														location.href = 'delete_patient.php';
 
-								        }
+													}
 
 
-								}
-
-								</script>
-								<!-- /Export links-->
-								<?php
-								$namee=$_GET['name'];
-                         	echo"<a href='edit-patient.php?name={$namee}' class='btn btn-success mb-3' onclick='edit()'><span class='ti-pencil-alt'></span> Edit Patient</a>
+												}
+											</script>
+											<!-- /Export links-->
+											<?php
+											$namee = $_GET['name'];
+											echo "<a href='edit-patient.php?name={$namee}' class='btn btn-success mb-3' onclick='edit()'><span class='ti-pencil-alt'></span> Edit Patient</a>
                             <button type='button' class='btn btn-danger mb-3' onclick='delete_p()' id='delete_patient' ><span class='ti-trash'></span> Delete Patient</button>
                             <button type='button' class='btn btn-info mb-3'><span class='ti-arrow-down'></span> Download File</button>";
-                            ?>
+											?>
+							</div>
 						</div>
+						<!-- /Widget Item -->
+						<!-- Widget Item -->
+
+						<!-- /Widget Item -->
 					</div>
-                    <!-- /Widget Item -->
-                    <!-- Widget Item -->
-			
-					<!-- /Widget Item -->
 				</div>
+				<!-- /Main Content -->
 			</div>
-			<!-- /Main Content -->
+			<!-- /Page Content -->
 		</div>
-		<!-- /Page Content -->
-	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
-	<script src="datatable/jquery.dataTables.min.js"></script>
-	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
-	<!-- Custom Script-->
-	<script src="js/custom.js"></script>
+		<!-- Back to Top -->
+		<a id="back-to-top" href="#" class="back-to-top">
+			<span class="ti-angle-up"></span>
+		</a>
+		<!-- /Back to Top -->
+		<!-- Jquery Library-->
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<!-- Popper Library-->
+		<script src="js/popper.min.js"></script>
+		<!-- Bootstrap Library-->
+		<script src="js/bootstrap.min.js"></script>
+
+		<!-- Datatable  -->
+		<script src="datatable/jquery.dataTables.min.js"></script>
+		<script src="datatable/dataTables.bootstrap4.min.js"></script>
+
+		<!-- Custom Script-->
+		<script src="js/custom.js"></script>
 
 </body>
+
 </html>

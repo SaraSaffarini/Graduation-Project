@@ -54,7 +54,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -68,7 +68,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -82,7 +82,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -91,12 +91,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -104,9 +104,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -114,7 +116,7 @@
 		<!-- Page Content -->
 		<div id="content">
 			<!-- Top Navigation -->
-		
+
 			<!-- /Top Navigation -->
 			<!-- Breadcrumb -->
 			<!-- Page Title -->
@@ -123,13 +125,13 @@
 					<h3 class="block-title">Add Payment</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Payments</li>
+						</li>
+						<li class="breadcrumb-item">Payments</li>
 						<li class="breadcrumb-item active">Add Payment</li>
 					</ol>
 				</div>
@@ -150,14 +152,11 @@
 									<div class="form-group col-md-6">
 										<label for="patient-id">Patient ID</label>
 										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" name="patient-id" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-										<label for="patient-name">Patient Name</label>
-										<input type="text" class="form-control" placeholder="Patient Name" id="patient-name" name="patient-name" required>
 									</div>
+
 									<div class="form-group col-md-6">
 										<label for="department">Department</label>
-										<select class="form-control" id="department" name="department" >
+										<select class="form-control" id="department" name="department">
 											<option>Neurosurgery</option>
 											<option>Pediatrics</option>
 											<option>Children's Surgery</option>
@@ -173,53 +172,50 @@
 											<option>TCD Clinic</option>
 										</select>
 									</div>
+
+
 									<div class="form-group col-md-6">
-										<label for="doctor-name">Doctor Name</label>
-										<input type="text" placeholder="Doctor Name" class="form-control" name="doctor-name" id="doctor-name" required>
+										<label for="discharge-date"> Date</label>
+										<input type="date" placeholder="Discharge Date" class="form-control" name="date" id="discharge-date " value='<?php echo date('Y-m-d'); ?>' required>
 									</div>
-									
-                                    <div class="form-group col-md-6">
-										<label for="discharge-date">Discharge Date</label>
-										<input type="date" placeholder="Discharge Date" class="form-control" name="date" id="discharge-date" required>
-                                    </div>	
-                                    <div class="form-group col-md-12">
-										<h4>Services</h4>										
-                                    </div>
-                                    <div class="form-group col-md-6">
+									<div class="form-group col-md-12">
+										<h4>Services</h4>
+									</div>
+									<div class="form-group col-md-6">
 										<label for="service-name">Service Name</label>
 										<input type="text" placeholder="Service Name" class="form-control" id="service-name" name="service_name" required>
-                                    </div>	
-                                    <div class="form-group col-md-6">
+									</div>
+									<div class="form-group col-md-6">
 										<label for="treatment-cost">Cost of Treatment</label>
 										<input type="text" placeholder="Cost of Treatment" class="form-control" id="treatment-cost" name="service_cost" required>
-                                    </div>
-                                   
-                                    <div class="form-group col-md-12">
-										<h4>Insurance Details </h4>										
-                                    </div>
-									
-                                    <div class="form-group col-md-3">
+									</div>
+
+									<div class="form-group col-md-12">
+										<h4>Insurance Details </h4>
+									</div>
+
+									<div class="form-group col-md-3">
 										<label for="discount">Discount (%)</label>
-										<input type="text" placeholder="Discount" class="form-control" id="discount" name="discount" >
-                                    </div>	
-                                    <div class="form-group col-md-3">
+										<input type="text" placeholder="Discount" class="form-control" id="discount" name="discount">
+									</div>
+									<div class="form-group col-md-3">
 										<label for="advance-paid"> Insurance Company</label>
 										<input type="text" placeholder="Company Name" class="form-control" id="advance-paid" name="company_name">
-                                    </div>
+									</div>
 									<div class="form-group col-md-3">
 										<label for="insurance"> Insurance Number</label>
 										<input type="text" placeholder="" class="form-control" id="insurance" name="Insurance_Number">
-                                    </div>
+									</div>
 									<div class="form-group col-md-12">
-										
-									<div class="alert alert-warning alert-dismissible fade show" role="alert">
-										Leave it Empty  if You Don't have any Insurance details.
-									   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										   <span aria-hidden="true">×</span>
-									   </button>
-								   </div>
-								   </div>
-                                    															
+
+										<div class="alert alert-warning alert-dismissible fade show" role="alert">
+											Leave it Empty if You Don't have any Insurance details.
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+										</div>
+									</div>
+
 									<div class="form-check col-md-12 mb-2">
 										<div class="text-left">
 											<div class="custom-control custom-checkbox">
@@ -234,8 +230,8 @@
 								</div>
 							</form>
 							<!-- Alerts-->
-							
-							
+
+
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -256,12 +252,12 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 

@@ -77,15 +77,11 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Register Patient</h3>
-							<form id="loginformm" method="post"  name="form" action="" >
+							<form id="loginformm" method="post"  name="form" action="">
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-name">Patient Name</label>
 										<input type="text" class="form-control" placeholder="Patient name" name="patient-name" id="patient-name" required>
-									</div>
-                                    <div class="form-group col-md-6">
-										<label for="patient-password">Password</label>
-										<input type="password" class="form-control" placeholder=" 8 or more characters" pattern=".{8,}" name="patient-password" id="patient-name" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="dob">Date Of Birth</label>
@@ -96,12 +92,16 @@
 										<input type="text" placeholder="#########" class="form-control"   id="id_number" name="id_number" required>
 									</div>
 									<div class="form-group col-md-6">
+										<label for="email">Email</label>
+										<input type="email" placeholder="email@.." class="form-control" id="Email" name="Email" required>
+									</div>
+									<div class="form-group col-md-6">
 										<label for="phone">Phone</label>
 										<input type="tel" placeholder="123-425-2678" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="phone" name="phone" required>
 									</div>
 									<div class="form-group col-md-6">
-										<label for="email">Email</label>
-										<input type="email" placeholder="email@.." class="form-control" id="Email" name="Email" required>
+										<label for="patient-password">Password</label>
+										<input type="password" class="form-control" placeholder=" 8 or more characters" pattern=".{8,}" name="patient-password" id="patient-name" required>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="gender">Gender</label>
@@ -111,13 +111,12 @@
 											<option>Other</option>
 										</select>
 									</div>
+									
 									<div class="form-group col-md-12">
 										<label for="exampleFormControlTextarea1">Address</label>
 										<textarea placeholder="Address" class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
 									</div>
 									
-																		
-								
 									<div class="form-group col-md-6 mb-3">
 										<button type="submit" class="btn btn-primary btn-lg" onclick="id_verf(document.form.id_number.value)">Submit</button>
 									</div>
@@ -166,7 +165,7 @@
 		let sum =0;
 		var digits = id.toString().split('').map(iNum => parseInt(iNum, 10));
 		
-		alert(digits.length);
+		
 
 
 for(var i=0;i<b.length;i++){
@@ -188,6 +187,7 @@ if((10-(sum%10))==digits[8]&& digits.length==9){
 
 	document.getElementById("loginformm").action = "add_patient1.php";
 document.getElementById("loginformm").submit();
+alert("You were successfully registered, now you can use your ID number and password to login.");
 }
 else{
 	alert(" ID is not valid");

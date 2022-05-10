@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -50,17 +50,17 @@ session_start();
 				<a href="doctor-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
-                <li>
+				<li>
 
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
 						<span class="ti-pencil-alt"></span> Appointments
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
-						
+
 						<li>
 							<a href="doctor-home.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -71,27 +71,27 @@ session_start();
 						<li>
 							<a href="doctor_urine.php">Show Urine Test Result</a>
 						</li>
-                        <li>
+						<li>
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
 							<a href="doctor_hormones.php">Show Hormones Test Result</a>
 						</li>
-					
+
 					</ul>
-		
+
 				<li>
 
 					<a href="#nav-pattient" data-toggle="collapse" aria-expanded="false">
-				<span class="ti-pencil-alt"></span> Patients
-				</a>
-				<ul class="collapse list-unstyled" id="nav-pattient">
-				
+						<span class="ti-pencil-alt"></span> Patients
+					</a>
+					<ul class="collapse list-unstyled" id="nav-pattient">
+
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>
-	
-				</ul>
+
+					</ul>
 				</li>
 
 			</ul>
@@ -100,9 +100,11 @@ session_start();
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -116,21 +118,21 @@ session_start();
 						<a href="doctor-home.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -171,43 +173,43 @@ session_start();
 											<th>Diagnosis</th>
 											<th>Allergies</th>
 											<th>Doctor_Name</th>
-																					
+
 										</tr>
 									</thead>
 									<tbody>
-                                        <?php 
-                                        		$servername = "localhost";
-                                                $username = "root";
-                                                $password = "";
+										<?php
+										$servername = "localhost";
+										$username = "root";
+										$password = "";
 
-                                        $dbname = "e-care";
+										$dbname = "e-care";
 
-                                        // Create connection
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                        // Check connection
-                                        if ($conn->connect_error) {
-                                            die("Connection failed: " . $conn->connect_error);
-                                          }
-                                     
-                                        $sql = "SELECT * FROM patient_file ";
-                                        $result1 = mysqli_query($conn, $sql);
-                                       
-                                         if (mysqli_num_rows($result1) > 0) {
-                                           while($row =mysqli_fetch_assoc($result1)) {
+										// Create connection
+										$conn = new mysqli($servername, $username, $password, $dbname);
+										// Check connection
+										if ($conn->connect_error) {
+											die("Connection failed: " . $conn->connect_error);
+										}
+										$name = $_SESSION['doctor_name'];
+										$sql = "SELECT * FROM patient_file WHERE Doctor_Name='$name' ";
+										$result1 = mysqli_query($conn, $sql);
 
-                                      echo"  
+										if (mysqli_num_rows($result1) > 0) {
+											while ($row = mysqli_fetch_assoc($result1)) {
+
+												echo "  
                                       
 										<tr>
-											<td>".$row['File_num']."</td>
-											<td>".$row['Patient_ID']."</td>
-											<td>".$row['Visit_Date']."</td>
-											<td>".$row['Diagnosis']."</td>
-											<td>".$row['Allergies']."</td>
-											<td>".$row['Doctor_Name']."</td>
+											<td>" . $row['File_num'] . "</td>
+											<td>" . $row['Patient_ID'] . "</td>
+											<td>" . $row['Visit_Date'] . "</td>
+											<td>" . $row['Diagnosis'] . "</td>
+											<td>" . $row['Allergies'] . "</td>
+											<td>" . $row['Doctor_Name'] . "</td>
 										</tr>";
-                                           }
-                                        }
-                                        ?>
+											}
+										}
+										?>
 									</tbody>
 								</table>
 							</div>
@@ -216,23 +218,23 @@ session_start();
 					<!-- /Widget Item -->
 				</div>
 
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					
+				<!-- /Widget Item -->
+				<!-- Widget Item -->
 
-				</div>
 
 			</div>
-			<!-- /Main Content -->
+
 		</div>
-		<!-- /Page Content -->
+		<!-- /Main Content -->
+	</div>
+	<!-- /Page Content -->
 	</div>
 	<!-- Back to Top -->
 	<a id="back-to-top" href="#" class="back-to-top">
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	
+
 	<!-- Jquery Library-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<!-- Popper Library-->
