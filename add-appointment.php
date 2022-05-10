@@ -26,6 +26,10 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 	<script src="js/modernizr.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css" type="text/css" media="all">
 </head>
 
 <body>
@@ -56,7 +60,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -70,7 +74,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -84,7 +88,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -93,12 +97,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -106,36 +110,38 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
 		<!-- /Sidebar -->
 		<!-- Page Content -->
 		<div id="content">
-		<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="responsive-logo">
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -146,13 +152,13 @@
 					<h3 class="block-title">Add Appointment</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Appointments</li>
+						</li>
+						<li class="breadcrumb-item">Appointments</li>
 						<li class="breadcrumb-item active">Add Appointment</li>
 					</ol>
 				</div>
@@ -160,35 +166,33 @@
 			<!-- /Page Title -->
 
 			<!-- /Breadcrumb -->
-			
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#form').submit(function(e) {
-				e.preventDefault();
-				$.ajax({
-					type: "POST",
-					url: '',
-					data: $(this).serialize(),
-					success: function(response)
-					{
 
-						const name= document.getElementById('doctor-name').value;
-						const date= document.getElementById('appointment-date').value;
-						const id= document.getElementById('patient-id').value;
-						const myarray=name.split("At");
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#form').submit(function(e) {
+						e.preventDefault();
+						$.ajax({
+							type: "POST",
+							url: '',
+							data: $(this).serialize(),
+							success: function(response) {
 
-						alert(myarray[1]);
-						location.href = 'next.php?name='+myarray[0]+'&'+'date='+date+'&'+'id='+id+'&'+'department='+myarray[1];
+								const name = document.getElementById('doctor-name').value;
+								const date = document.getElementById('appointment-date').value;
+								const id = document.getElementById('patient-id').value;
+								const myarray = name.split("At");
+
+								location.href = 'next.php?name=' + myarray[0] + '&' + 'date=' + date + '&' + 'id=' + id + '&' + 'department=' + myarray[1];
 
 
 
 
 
-					}
+							}
+						});
+					});
 				});
-			});
-		});
-	</script>
+			</script>
 
 			<!-- Main Content -->
 			<div class="container-fluid">
@@ -198,54 +202,53 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Add Appointment</h3>
-							<form method="post" id="form">
+							<form method="post" id="form" name="form">
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="patient-id">Patient ID</label>
-										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" required>
+										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id" name="id" required>
 									</div>
 									<div class="form-group col-md-6">
-    
-    
-									<label for="appointment-date">Appointment Date</label>
-  								  <input type="date" placeholder="Appointment Date" class="form-control" id="appointment-date" required>	
+
+
+										<label for="appointment-date">Appointment Date</label>
+										<?php echo "  <input type='date' placeholder='Appointment Date'class='form-control' min='" . date('Y-m-d') . "' id='appointment-date' required>	"; ?>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="doctor-name">Doctor Name</label>
 										<select class="form-control" id="doctor-name">
-										<?php
-													$servername = "localhost";
-                                            		$username = "root";
-                                            		$password = "";
+											<?php
+											$servername = "localhost";
+											$username = "root";
+											$password = "";
 
-                                            $dbname = "proclinc";
+											$dbname = "e-care";
 
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            // Check connection
-                                            $sql = "SELECT * FROM doctors";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($conn->connect_error) {
-											die("Connection failed: " . $conn->connect_error);
+											// Create connection
+											$conn = new mysqli($servername, $username, $password, $dbname);
+											// Check connection
+											$sql = "SELECT * FROM doctors";
+											$result = mysqli_query($conn, $sql);
+											if ($conn->connect_error) {
+												die("Connection failed: " . $conn->connect_error);
 											}
 											if (mysqli_num_rows($result) > 0) {
-											while($row =mysqli_fetch_assoc($result)) {
-												
-												echo " <option>" .$row['Full_Name'].  " At " .$row['Department']."</option>";
+												while ($row = mysqli_fetch_assoc($result)) {
+
+													echo " <option>" . $row['Full_Name'] .  " At " . $row['Department'] . "</option>";
 												}
-											}
-											else {
+											} else {
 												echo "0 results";
-												}
-		
-		
-												$conn->close();
-		
-												?>
+											}
+
+
+											$conn->close();
+
+											?>
 										</select>
-										
+
 									</div>
-													
+
 									<div class="form-check col-md-12 mb-2">
 										<div class="text-left">
 											<div class="custom-control custom-checkbox">
@@ -255,23 +258,12 @@
 										</div>
 									</div>
 									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Next</button>
+										<button type="submit" onclick="id_verf(document.form.id.value)" class="btn btn-primary btn-lg">Next</button>
 									</div>
 								</div>
 							</form>
 							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Successfully Done!</strong> Appointment token Generated
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
+
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -287,20 +279,57 @@
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 
 </body>
 
 </html>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		format: "yyyy/mm/dd",
+		minDate: new Date(),
+	});
+</script>
+<script>
+	function id_verf(id) {
+		let a = [];
+		let b = [1, 2, 1, 2, 1, 2, 1, 2];
+		let c = [];
+		let d = [];
+		let sum = 0;
+		var digits = id.toString().split('').map(iNum => parseInt(iNum, 10));
+
+
+
+		for (var i = 0; i < b.length; i++) {
+			c[i] = digits[i] * b[i];
+		}
+		for (var i = 0; i < c.length; i++) {
+			if (c[i] < 10) {
+				d[i] = c[i];
+			} else {
+				d[i] = ((c[i] % 10) + (c[i] - (c[i] % 10)) / 10);
+			}
+		}
+		for (let i = 0; i < d.length; i++) {
+			sum += d[i];
+		}
+
+		if ((10 - (sum % 10)) == digits[8]) {
+			alert("true");
+		} else {
+			alert(" ID is not valid");
+			window.location.href = "http://localhost/graduation-project-testing/add-appointment.php?";
+
+		}
+
+
+	}
+</script>

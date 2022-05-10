@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-$dbname = "proclinc";
+$dbname = "e-care";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -27,7 +27,7 @@ if(isset($_POST['company_name']) && isset($_POST['discount']) && $_POST['discoun
     $company_name=$_POST['company_name'];
     $insurance_availabe="Yes";
     $insurance_number=$_POST['Insurance_Number'];
-    $sql = "INSERT INTO insurance_comapny (Patient_ID,Insurance_number,Insurance_Discount,Company_Name)
+    $sql = "INSERT INTO insurance_company (Patient_ID,Insurance_number,Insurance_Discount,Company_Name)
        VALUES ('$patient_id','$insurance_number','$discount','$company_name')";
  if (mysqli_query($conn, $sql)) {
         echo "New record has been added successfully !";

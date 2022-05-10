@@ -59,7 +59,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -73,7 +73,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -87,7 +87,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -101,7 +101,7 @@
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -109,36 +109,38 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
 		<!-- /Sidebar -->
 		<!-- Page Content -->
 		<div id="content">
-		<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="responsive-logo">
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -176,29 +178,29 @@
 							<div class="widget-right">
 								<h4 class="wiget-title">Patients</h4>
 								<?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
+								$servername = "localhost";
+								$username = "root";
+								$password = "";
 
-$dbname = "proclinc";
+								$dbname = "e-care";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT * FROM patients";
-if ($result=mysqli_query($conn,$sql)) {
-    $rowcount=mysqli_num_rows($result);
-}
+								// Create connection
+								$conn = new mysqli($servername, $username, $password, $dbname);
+								$sql = "SELECT * FROM patients";
+								if ($result = mysqli_query($conn, $sql)) {
+									$rowcount = mysqli_num_rows($result);
+								}
 
 
 
-																			
-								echo"<span class='numeric color-red'>".$rowcount."</span>";
+
+								echo "<span class='numeric color-red'>" . $rowcount . "</span>";
 								$conn->close();
 
-	
-										
+
+
 								?>
-								
+
 								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% Increased</p>
 							</div>
 						</div>
@@ -213,30 +215,30 @@ if ($result=mysqli_query($conn,$sql)) {
 							<div class="widget-right">
 								<h4 class="wiget-title">Appointments</h4>
 								<?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
+								$servername = "localhost";
+								$username = "root";
+								$password = "";
 
-$dbname = "proclinc";
+								$dbname = "e-care";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT * FROM appointments";
-if ($result=mysqli_query($conn,$sql)) {
-    $rowcount=mysqli_num_rows($result);
-}
+								// Create connection
+								$conn = new mysqli($servername, $username, $password, $dbname);
+								$sql = "SELECT * FROM appointments";
+								if ($result = mysqli_query($conn, $sql)) {
+									$rowcount = mysqli_num_rows($result);
+								}
 
 
 
-																			
-								echo"<span class='numeric color-green'>".$rowcount."</span>";
+
+								echo "<span class='numeric color-green'>" . $rowcount . "</span>";
 								$conn->close();
 
 
-	
-										
+
+
 								?>
-								
+
 								<p class="inc-dec mb-0"><span class="ti-angle-down"></span> -15% Decreased</p>
 							</div>
 						</div>
@@ -277,7 +279,7 @@ if ($result=mysqli_query($conn,$sql)) {
 					<!-- /Widget Item -->
 				</div>
 
-		
+
 			</div>
 			<!-- /Main Content -->
 		</div>
@@ -288,7 +290,7 @@ if ($result=mysqli_query($conn,$sql)) {
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	
+
 	<!-- Jquery Library-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<!-- Popper Library-->

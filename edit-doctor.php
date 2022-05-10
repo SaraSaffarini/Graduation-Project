@@ -16,7 +16,7 @@
 	<!-- Animations CSS -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Main CSS -->
-			<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/red.css" id="style_theme">
@@ -58,7 +58,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -72,7 +72,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -86,7 +86,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -95,12 +95,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -108,9 +108,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -125,21 +127,21 @@
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -150,13 +152,13 @@
 					<h3 class="block-title">Edit Doctor</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Doctors</li>
+						</li>
+						<li class="breadcrumb-item">Doctors</li>
 						<li class="breadcrumb-item active">Edit Doctor</li>
 					</ol>
 				</div>
@@ -173,33 +175,32 @@
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Edit Doctor</h3>
 							<?php
-                            							$servername = "localhost";
-                                                                                                      $username = "root";
-                                                                                                      $password = "";
-                                                                                                      $dbname = "proclinc";
-                                                                                                       $namee=$_GET['name'];
-                                                                                                $conn = new mysqli($servername, $username, $password, $dbname);
-                                                                                                 $sql = "SELECT * FROM doctors WHERE Full_Name='$namee'";
-                                                                                                  $result = mysqli_query($conn, $sql);
-                                                                                                   if ($conn->connect_error) {
-                                                                                                     die("Connection failed: " . $conn->connect_error);
-                                                                                                        }
-                                                                                                         if (mysqli_num_rows($result) > 0) {
-                                                                                                           if($row =mysqli_fetch_assoc($result)) {
-                                                                                                           $namee= $row['Full_Name'];
-                                                                                                            $gender=$row['Gender'];
-                                                                                                            $address=$row['Address'];
-                                                                                                           $email=$row['email'];
-                                                                                                           $phone=$row['Phone_Number'];
-                                                                                                           $password=$row['password'];
-                                                                                                           $department=$row['Department'];
-                                                                                                           $doctor_details=$row['Doctor_Details'];
-                                                                                                           $duty_time=$row['Duty_Time'];
-                                                                                                           $specialzation=$row['Specialzation'];
-                                                                                                           $dob=$row['Date_of_Birth'];
+							$servername = "localhost";
+							$username = "root";
+							$password = "";
+							$dbname = "e-care";
+							$namee = $_GET['name'];
+							$conn = new mysqli($servername, $username, $password, $dbname);
+							$sql = "SELECT * FROM doctors WHERE Full_Name='$namee'";
+							$result = mysqli_query($conn, $sql);
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							}
+							if (mysqli_num_rows($result) > 0) {
+								if ($row = mysqli_fetch_assoc($result)) {
+									$namee = $row['Full_Name'];
+									$gender = $row['Gender'];
+									$address = $row['Address'];
+									$email = $row['email'];
+									$phone = $row['Phone_Number'];
+
+									$department = $row['Department'];
+									$duty_time = $row['Duty_Time'];
+									$specialzation = $row['Specialzation'];
+									$dob = $row['Date_of_Birth'];
 
 
-                               echo"
+									echo "
 								<form method='post' id='formm' action='editdoctor.php'>
                             								<div class='form-row'>
                             									<div class='form-group col-md-6'>
@@ -234,13 +235,10 @@
                             											<option>Other</option>
                             										</select>
                             									</div>
-                            									<div class='form-group col-md-6'>
-                            										<label for='about-doctor'>Doctor Details</label>
-                            										<textarea placeholder='Doctor Details' class='form-control' id='about-doctor' rows='3' name='doctor_details'> ".$doctor_details."</textarea>
-                                                                </div>
+                            									
                                                                 <div class='form-group col-md-6'>
                             										<label for='address'>Address</label>
-                            										<textarea placeholder='Address' class='form-control'  id='address' rows='3' name='address'>".$address."</textarea>
+                            										<textarea placeholder='Address' class='form-control'  id='address' rows='3' name='address'>" . $address . "</textarea>
                             									</div>
                             									<div class='form-group col-md-6'>
                             										<label for='time-slot'>Duty Time</label>
@@ -280,9 +278,9 @@
                             									</div>
                             								</div>
                             							</form>";
-                            							}
-                            							}
-                            							?>
+								}
+							}
+							?>
 
 							<!-- Alerts-->
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -317,12 +315,12 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 

@@ -1,5 +1,5 @@
-<?php 
-session_start();?>
+<?php
+session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +25,7 @@ session_start();?>
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 	<link rel="stylesheet" href="datatable/dataTables.bootstrap4.min.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 
 	<script src="js/modernizr.min.js"></script>
@@ -59,7 +59,7 @@ session_start();?>
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -73,7 +73,7 @@ session_start();?>
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -87,7 +87,7 @@ session_start();?>
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -96,12 +96,12 @@ session_start();?>
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -109,9 +109,11 @@ session_start();?>
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -119,28 +121,28 @@ session_start();?>
 		<!-- Page Content -->
 		<div id="content">
 			<!-- Top Navigation -->
-		<!-- Top Navigation -->
-		<nav class="navbar navbar-default">
+			<!-- Top Navigation -->
+			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="responsive-logo">
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -151,13 +153,13 @@ session_start();?>
 					<h3 class="block-title">Edit Patient</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Patients</li>
+						</li>
+						<li class="breadcrumb-item">Patients</li>
 						<li class="breadcrumb-item active">Edit Patient</li>
 					</ol>
 				</div>
@@ -173,30 +175,30 @@ session_start();?>
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Edit Patient</h3>
-							                            
+
 							<?php
 							$servername = "localhost";
-                                                                          $username = "root";
-                                                                          $password = "";
-                                                                          $dbname = "proclinc";
-                                                                           $namee=$_GET['name'];
-                                                                    $conn = new mysqli($servername, $username, $password, $dbname);
-                                                                     $sql = "SELECT * FROM patients WHERE Full_Name='$namee'";
-                                                                      $result = mysqli_query($conn, $sql);
-                                                                       if ($conn->connect_error) {
-                                                                         die("Connection failed: " . $conn->connect_error);
-                                                                            }
-                                                                             if (mysqli_num_rows($result) > 0) {
-                                                                               if($row =mysqli_fetch_assoc($result)) {
-                                                                               $namee= $row['Full_Name'];
-                                                                                $gender=$row['Gender'];
-                                                                                $address=$row['Address'];
-                                                                               $email=$row['Email'];
-                                                                               $phone=$row['Phone_Number'];
-                                                                               $dob=$row['Date_Of_Birth'];
-                                                                               $phpdate = strtotime( $dob );
+							$username = "root";
+							$password = "";
+							$dbname = "e-care";
+							$namee = $_GET['name'];
+							$conn = new mysqli($servername, $username, $password, $dbname);
+							$sql = "SELECT * FROM patients WHERE Full_Name='$namee'";
+							$result = mysqli_query($conn, $sql);
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							}
+							if (mysqli_num_rows($result) > 0) {
+								if ($row = mysqli_fetch_assoc($result)) {
+									$namee = $row['Full_Name'];
+									$gender = $row['Gender'];
+									$address = $row['Address'];
+									$email = $row['Email'];
+									$phone = $row['Phone_Number'];
+									$dob = $row['Date_Of_Birth'];
+									$phpdate = strtotime($dob);
 
-							echo"<form id='loginformm' method='post' action='editpatient.php' >
+									echo "<form id='loginformm' method='post' action='editpatient.php' >
 								<div class='form-row'>
 									<div class='form-group col-md-6'>
 										<label for='patient-name'>Patient Name</label>
@@ -242,14 +244,14 @@ session_start();?>
 									</div>
 								</div>
 							</form>";
+								}
 							}
-							}
-							                            	    $conn->close();
+							$conn->close();
 
 							?>
 
 							<!-- Alerts-->
-						
+
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -270,12 +272,12 @@ session_start();?>
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 

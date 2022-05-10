@@ -55,9 +55,7 @@ session_start();
 						<span class="ti-pencil-alt"></span> Urine Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-patients">
-						<li>
-							<a href="urine_report.php">Add Urine Analysis</a>
-						</li>
+						
 						<li>
 							<a href="all_urine.php">All Urine Reports</a>
 						</li>
@@ -69,9 +67,7 @@ session_start();
 						<span class="ti-pencil-alt"></span> Stool Anaylsis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-doctors">
-						<li>
-							<a href="stool_report.php">Add Stool Anaylsis</a>
-						</li>
+						
 						<li>
 							<a href="all_stool.php">All Stool Reports</a>
 						</li>
@@ -80,14 +76,12 @@ session_start();
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Hormones Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
+						
 						<li>
-							<a href="hormons_report.php">Add Hormons Analysis</a>
-						</li>
-						<li>
-							<a href="all_hormons.php">All Hormon Reports</a>
+							<a href="all_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
@@ -156,12 +150,86 @@ session_start();
 			<div class="container-fluid home">
 
 
-		<div>
-            <img src='images/lab2.png' width="100%" height="600"> </div>
-					<!-- /Widget Item -->
+		
+			<div class="row">
 					<!-- Widget Item -->
-					
+					<div class="col-md-12">
+						<div class="widget-area-2 proclinic-box-shadow">
+							<h3 class="widget-title"> Requested Tests</h3>
+							<div class="table-responsive">
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Status</th>
+											<th>Patient ID</th>
+											<th>Doctor</th>
+											<th>Requested Test</th>
 
+										
+									</thead>
+									<tbody>
+                                        <?php 
+                                        		$servername = "localhost";
+                                                $username = "root";
+                                                $password = "";
+
+                                        $dbname = "e-care";
+
+                                        // Create connection
+                                        $conn = new mysqli($servername, $username, $password, $dbname);
+                                        // Check connection
+                                        if ($conn->connect_error) {
+                                            die("Connection failed: " . $conn->connect_error);
+                                          }
+
+                                        $sql2= "SELECT * FROM `requested_tests` WHERE State = 1";
+                                        
+                                        $result = mysqli_query($conn, $sql2);
+                                       
+                                         if (mysqli_num_rows($result) > 0) {
+                                           while($row =mysqli_fetch_assoc($result)) {
+											   $id=$row['Patient_Id'];
+											
+                                     
+                                     
+
+                                      echo"  
+										<tr>
+										<td><button type='button' class='btn btn-danger'><a href='delete_test.php?id={$id}'>Done</a></button></td>
+
+											<td>".$row['Patient_Id']."</td>
+											<td>".$row['Doctor_Name']."</td>";
+											if ($row['Test_Type']=="Urine Test"){
+												echo"<td title='Click here to add test result'><a href='urine_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
+
+
+
+											}
+											if ($row['Test_Type']=="Stool Test"){
+												echo"<td title='Click here to add test result'><a href='stool_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
+
+												
+
+											}
+                                     
+											if ($row['Test_Type']=="Hormones Test"){
+												echo"<td title='Click here to add test result'><a href='hormones_report.php?id={$id}'>".$row['Test_Type']."</a></td>";
+
+												
+
+											}
+									
+								echo"</tr>";
+                                           }
+										}
+                                        
+                                        ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- /Widget Item -->
 				</div>
 
 			</div>

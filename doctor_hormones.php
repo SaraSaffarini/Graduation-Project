@@ -43,65 +43,59 @@
 	</div>
 	<!--/Pre Loader -->
 	<div class="wrapper">
-    <nav id="sidebar" class="proclinic-bg">
+		<!-- Sidebar -->
+		<nav id="sidebar" class="proclinic-bg">
 			<div class="sidebar-header">
-				<a href="patient-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
+				<a href="doctor-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
-              
-				<li>
-					<a href="#nav-patients" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Urine Analysis
-					</a>
-					<ul class="collapse list-unstyled" id="nav-patients">
-					
-						<li>
-							<a href="patient_urine.php">All Urine Reports</a>
-						</li>
-					
-					</ul>
-				</li>
-				<li>
-					<a href="#nav-doctors" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Stool Anaylsis
-					</a>
-					<ul class="collapse list-unstyled" id="nav-doctors">
-						
-						<li>
-							<a href="patient_stool.php">All Stool Reports</a>
-						</li>
-						
-					</ul>
-				</li>
-				<li>
+                <li>
+
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Appointments
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
-					
+						
 						<li>
-							<a href="patient_hormons.php">All Hormon Reports</a>
+							<a href="doctor-home.php">All Appointments</a>
 						</li>
 						
 					</ul>
 				</li>
-                <li>
-					<a href="#nav-patientss" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Appointment
+				<li>
+					<a href="#nav-payment" data-toggle="collapse" aria-expanded="false">
+						<span class="ti-money"></span> Reports
 					</a>
-					<ul class="collapse list-unstyled" id="nav-patientss">
-					
+					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="patient_add_appotiment.php">Add Appointment</a>
+							<a href="doctor_urine.php">Show Urine Test Result</a>
 						</li>
                         <li>
-							<a href="patient_appotiment.php">My Appointments</a>
+							<a href="doctor_stool.php">Show Stool Test Result</a>
+						</li>
+						<li>
+							<a href="doctor_hormones.php">Show Hormone Test Result</a>
 						</li>
 					
 					</ul>
+		
+				<li>
+
+					<a href="#nav-pattient" data-toggle="collapse" aria-expanded="false">
+				<span class="ti-pencil-alt"></span> Patients
+				</a>
+				<ul class="collapse list-unstyled" id="nav-pattient">
+				
+						<li>
+							<a href="show_patient_file.php">Show Patients File</a>
+						</li>
+	
+				</ul>
 				</li>
-			
+
 			</ul>
+
+
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
@@ -118,7 +112,7 @@
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="responsive-logo">
-						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+						<a href="doctor-home.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
 		
@@ -143,12 +137,12 @@
 			<!-- Page Title -->
 			<div class="row no-margin-padding">
 				<div class="col-md-6">
-					<h3 class="block-title">Hormons Analysis</h3>
+					<h3 class="block-title">Hormone Tests</h3>
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">						
 						<li class="breadcrumb-item">
-							<a href="patient-home.php">
+							<a href="doctor-home.php">
 								<span class="ti-home"></span>
 							</a>
                         </li>
@@ -166,7 +160,7 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
-							<h3 class="widget-title">My Hormon Tests</h3>							
+							<h3 class="widget-title">All Hormone Tests</h3>							
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
@@ -189,13 +183,12 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);
                                             // Check connection
-                                           $id= $_SESSION['username'];
-                                            $sql = "SELECT * FROM hormons_analysis WHERE Patient_ID='$id'";
+                                            $sql = "SELECT * FROM hormones_analysis";
                                             $result = mysqli_query($conn, $sql);
                                             if ($conn->connect_error) {
                                               die("Connection failed: " . $conn->connect_error);
@@ -203,7 +196,7 @@
                                              if (mysqli_num_rows($result) > 0) {
                                                while($row =mysqli_fetch_assoc($result)) {
 													$id=$row['Patient_ID'];
-                                                   echo"<td><a  id='name' href='' >".$row['Patient_ID']."</a></td>";
+                                                   echo"<td><a  id='name'  >".$row['Patient_ID']."</a></td>";
                                                     echo"<td  >".$row['T3']."</td>";
                                                   echo"<td id='dob'>".$row['T4']."</td>";
                                                     echo"<td id='p_n'>".$row["TSH"]."</td>";
@@ -216,6 +209,7 @@
 
 
                                              else {
+                                               echo "0 results";
                                              }
 
 

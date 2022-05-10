@@ -72,12 +72,12 @@
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hermons Analysis
+						<span class="ti-pencil-alt"></span> Hormones Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
 					
 						<li>
-							<a href="patient_hormons.php">All Hermons Reports</a>
+							<a href="patient_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
@@ -178,6 +178,7 @@
 											<th>Token Number</th>
 											<th>Doctor Name</th>
 											<th>Problem</th>
+											<th>Appointment Date</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -187,7 +188,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -213,6 +214,7 @@
 											<td>".$row['Token_Num']."</td>
 											<td>".$row['Doctor_Name']."</td>
 											<td>".$row['Problem_Desreption']."</td>
+											<td>".$row['Appotiment_Date']."</td>
                                         </tr>";
                                    
 											   }

@@ -23,13 +23,15 @@
 	<link rel="stylesheet" href="charts/css/morris.css">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
-	<link rel="stylesheet" href="datatable/dataTables.bootstrap4.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<!-- Popper Library-->
+	<!-- Bootstrap Library-->
+    <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css" type="text/css" media="all">
+  <body>
 
-	<script src="js/modernizr.min.js"></script>
-</head>
-
-<body>
 	<!-- Pre Loader -->
 	<div class="loading">
 		<div class="spinner">
@@ -72,12 +74,12 @@
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Hormone Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
 					
 						<li>
-							<a href="patient_hormons.php">All Hormon Reports</a>
+							<a href="patient_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
@@ -202,7 +204,8 @@
     
     
 									<label for="appointment-date">Appointment Date</label>
-  								  <input type="date" placeholder="Appointment Date" class="form-control" id="appointment-date" required>	
+									<?php  echo "  <input type='date' placeholder='Appointment Date'class='form-control' min='".date('Y-m-d')."' id='appointment-date' required>	";?>
+
 									</div>
 									<div class="form-group col-md-6">
 										<label for="doctor-name">Doctor Name</label>
@@ -212,7 +215,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -269,20 +272,26 @@
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
+
     <!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
+	
 
 </body>
 
 </html>
+<script type="text/javascript">
+      $('.datepicker').datepicker({
+        minDate: new Date(),
+         format: "dd/mm/yyyy",
+                toggleActive: true,
+                todayBtn: "linked",
+                changeMonth: true,
+                changeYear: true
+      });
+ 
+</script>

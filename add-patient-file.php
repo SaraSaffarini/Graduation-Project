@@ -4,7 +4,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-$dbname = "proclinc";
+$dbname = "e-care";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -33,10 +33,10 @@ $sql1 = "SELECT * FROM  patients WHERE id='$id'";
 $date=$_POST['visit_date'];
 $diagnosis=$_POST['diagnosis'];
 $allergies=$_POST['allergies'];
-$doctor=$_POST['doctor_name'];
+$doctor=$_POST['name'];
 
 $sql = "INSERT INTO patient_file (File_num,Patient_ID,Visit_Date,Diagnosis,Allergies,Doctor_Name)
-       VALUES ('$file','$id','$date','$diagnosis','$allergies','$doctor')";
+       VALUES ('$filenum','$id','$date','$diagnosis','$allergies','$doctor')";
  if (mysqli_query($conn, $sql)) {
         echo "New record has been added successfully !";
         header('Location:doctor-home.php');

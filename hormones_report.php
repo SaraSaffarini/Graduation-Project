@@ -54,9 +54,7 @@ session_start();
 						<span class="ti-pencil-alt"></span> Urine Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-patients">
-						<li>
-							<a href="urine_report.php">Add Urine Analysis</a>
-						</li>
+						
 						<li>
 							<a href="all_urine.php">All Urine Reports</a>
 						</li>
@@ -68,9 +66,7 @@ session_start();
 						<span class="ti-pencil-alt"></span> Stool Anaylsis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-doctors">
-						<li>
-							<a href="stool_report.php">Add Stool Anaylsis</a>
-						</li>
+						
 						<li>
 							<a href="all_stool.php">All Stool Reports</a>
 						</li>
@@ -79,14 +75,12 @@ session_start();
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Hormone Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
+						
 						<li>
-							<a href="hormons_report.php">Add Hormons Analysis</a>
-						</li>
-						<li>
-							<a href="all_hormons.php">All Hormon Reports</a>
+							<a href="all_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
@@ -135,7 +129,7 @@ session_start();
 			<!-- Page Title -->
 			<div class="row no-margin-padding">
 				<div class="col-md-6">
-					<h3 class="block-title">Hormons Test</h3>
+					<h3 class="block-title">Hormones Test</h3>
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">						
@@ -158,13 +152,17 @@ session_start();
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
-							<h3 class="widget-title">Add Hormons Analysis</h3>
+							<h3 class="widget-title">Add Hormones Analysis</h3>
 
-							<form method='post' id="form" action='hormons_rep.php'>
+							<form method='post' id="form" action='hormones_rep.php'>
 								<div class="form-row">
                                     <div class="form-group col-md-6">
 										<label for="specialization">Patient ID</label>
-										<input type="text" placeholder="Ex:45623..." class="form-control" id="specialization" name="patient_id" required>
+										<?php 
+										 $id=$_GET['id'];
+										echo"
+										<input type='text' placeholder='Ex:45623...' class='form-control' id='specialization' name='patient_id' value='{$id}' required>";
+										?>
 									</div>
 									<div class="form-group col-md-6">
 										<label for="Doctor-name">T3</label>

@@ -1,4 +1,4 @@
-<?php  session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -56,7 +56,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -70,7 +70,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -84,7 +84,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -93,12 +93,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -106,37 +106,39 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
 		<!-- /Sidebar -->
 		<!-- Page Content -->
 		<div id="content">
-				<!-- Top Navigation -->
-				<nav class="navbar navbar-default">
+			<!-- Top Navigation -->
+			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="responsive-logo">
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -147,13 +149,13 @@
 					<h3 class="block-title">Doctors</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Doctors</li>
+						</li>
+						<li class="breadcrumb-item">Doctors</li>
 						<li class="breadcrumb-item active">All Doctors</li>
 					</ol>
 				</div>
@@ -190,56 +192,52 @@
 									<tbody>
 										<tr>
 											<?php
-													$servername = "localhost";
-                                            		$username = "root";
-                                            		$password = "";
+											$servername = "localhost";
+											$username = "root";
+											$password = "";
 
-                                            $dbname = "proclinc";
+											$dbname = "e-care";
 
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            // Check connection
-                                            $sql = "SELECT * FROM doctors";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($conn->connect_error) {
-											die("Connection failed: " . $conn->connect_error);
+											// Create connection
+											$conn = new mysqli($servername, $username, $password, $dbname);
+											// Check connection
+											$sql = "SELECT * FROM doctors";
+											$result = mysqli_query($conn, $sql);
+											if ($conn->connect_error) {
+												die("Connection failed: " . $conn->connect_error);
 											}
 											if (mysqli_num_rows($result) > 0) {
-											while($row =mysqli_fetch_assoc($result)) {
-											echo"<td>";
-											echo"<div class='custom-control custom-checkbox'>";
-												echo"<input class='custom-control-input' type='checkbox' id=".$row['ID'].">";
-												echo	"<label class='custom-control-label' for=".$row['ID']."></label>";
-												echo" </div>";
-											echo"</td>";
-											$fullname=$row['Full_Name'];
-											echo"<td>".$row['ID']."</td>";
-											echo"<td  ><a  id='name' href='about-doctor.php?name={$fullname}' >".$row['Full_Name']."</a>";
-											echo"<td id='dob'>".$row['Department']."</td>";
-											echo"<td id='p_n'>".$row['Phone_Number']."</td>";
-											echo"<td id='spec'>".$row['Specialzation']."</td>" ;
-											echo "<td><span class='badge badge-success'>Completed</span></td>";
-											echo"	</tr>";
-										}
-										}
+												while ($row = mysqli_fetch_assoc($result)) {
+													echo "<td>";
+													echo "<div class='custom-control custom-checkbox'>";
+													echo "<input class='custom-control-input' type='checkbox' id=" . $row['ID'] . ">";
+													echo	"<label class='custom-control-label' for=" . $row['ID'] . "></label>";
+													echo " </div>";
+													echo "</td>";
+													$fullname = $row['Full_Name'];
+													echo "<td>" . $row['ID'] . "</td>";
+													echo "<td  ><a  id='name' href='about-doctor.php?name={$fullname}' >" . $row['Full_Name'] . "</a>";
+													echo "<td id='dob'>" . $row['Department'] . "</td>";
+													echo "<td id='p_n'>" . $row['Phone_Number'] . "</td>";
+													echo "<td id='spec'>" . $row['Specialzation'] . "</td>";
+													echo "<td><span class='badge badge-success'>Completed</span></td>";
+													echo "	</tr>";
+												}
+											} else {
+												echo "0 results";
+											}
 
 
-
-										else {
-										echo "0 results";
-										}
+											$conn->close();
 
 
-										$conn->close();
-
-
-										?>
+											?>
 
 
 
 									</tbody>
-                                </table>
-                                
+								</table>
+
 								<!--Export links-->
 								<nav aria-label="Page navigation example">
 									<ul class="pagination justify-content-center export-pagination">
@@ -247,7 +245,7 @@
 											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
 										</li>
 										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
+											<a class="page-link" href="#"><span class="ti-printer"></span> print</a>
 										</li>
 										<li class="page-item">
 											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
@@ -258,8 +256,7 @@
 									</ul>
 								</nav>
 								<!-- /Export links-->
-								<button type="button" class="btn btn-danger mt-3 mb-0"><span class="ti-trash"></span> DELETE</button>
-								<button type="button" class="btn btn-primary mt-3 mb-0"><span class="ti-pencil-alt"></span> EDIT</button>
+
 							</div>
 						</div>
 					</div>
@@ -280,12 +277,12 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 	<script src="js/custom-datatables.js"></script>

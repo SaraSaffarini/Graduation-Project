@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -93,7 +96,50 @@
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
-    
+    <div id="content">
+			<!-- Top Navigation -->
+			<!-- Top Navigation -->
+			<nav class="navbar navbar-default" >
+				<div class="container-fluid" >
+					<div class="responsive-logo">
+						<a href="admin.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+					</div>
+					<ul class="nav">
+		
+						<li class="nav-item">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+								<span class="ti-user"></span>
+							</a>
+							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
+								<h5><?php echo $_SESSION['username'] ;?>
+                                </h5>
+							
+								<a class="dropdown-item" href="login.php">
+									<span class="ti-power-off"></span> Logout</a>
+							</div>
+						</li>
+					</ul>
+				
+				</div>
+			</nav>
+				<!-- /Top Navigation -->
+			<!-- Breadcrumb -->
+			<!-- Page Title -->
+			<div class="row no-margin-padding">
+				<div class="col-md-6">
+					<h3 class="block-title">Users</h3>
+				</div>
+				<div class="col-md-6">
+					<ol class="breadcrumb">						
+						<li class="breadcrumb-item">
+							<a href="admin.php">
+								<span class="ti-home"></span>
+							</a>
+                        </li>
+                       
+					</ol>
+				</div>
+			</div>
   
     <!-- /Sidebar -->
     <!-- Page Content -->
@@ -116,7 +162,7 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -129,7 +175,7 @@
                                              if (mysqli_num_rows($result) > 0) {
                                                while($row =mysqli_fetch_assoc($result)) {
 													$id=$row['username'];
-                                                   echo"<td><a  id='name' href='about-hermons.php?id={$id}' >".$row['username']."</a></td>";
+                                                   echo"<td><a  id='name' href='about-hormones.php?id={$id}' >".$row['username']."</a></td>";
                                                     echo"<td  >".$row['password']."</td>";
                                                   echo"<td id='dob'>".$row['user_level']."</td>";
                                                  

@@ -1,8 +1,9 @@
-<?php
-	    session_start();
-	?>
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
+	
 
 <head>
 	<meta charset="utf-8">
@@ -13,8 +14,6 @@
 	<link rel="shortcut icon" type="image/png" href="images/fav.png">
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-
 	<!-- themify icons CSS -->
 	<link rel="stylesheet" href="css/themify-icons.css">
 	<!-- Animations CSS -->
@@ -23,17 +22,21 @@
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/red.css" id="style_theme">
 	<link rel="stylesheet" href="css/responsive.css">
+
 	<!-- morris charts -->
 	<link rel="stylesheet" href="charts/css/morris.css">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
-	<link rel="stylesheet" href="datatable/dataTables.bootstrap4.min.css">
 
 	<script src="js/modernizr.min.js"></script>
+	
 
 </head>
 
 <body>
+
+
+
 	<!-- Pre Loader -->
 	<div class="loading">
 		<div class="spinner">
@@ -43,6 +46,7 @@
 	</div>
 	<!--/Pre Loader -->
 	<div class="wrapper">
+		<!-- Sidebar -->
 		<!-- Sidebar -->
 		<nav id="sidebar" class="proclinic-bg">
 			<div class="sidebar-header">
@@ -74,7 +78,7 @@
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
-							<a href="doctor_hormons.php">Show Hormons Test Result</a>
+							<a href="doctor_hormones.php">Show Hormones Test Result</a>
 						</li>
 					
 					</ul>
@@ -85,7 +89,7 @@
 				<span class="ti-pencil-alt"></span> Patients
 				</a>
 				<ul class="collapse list-unstyled" id="nav-pattient">
-				
+			
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>
@@ -137,16 +141,15 @@
 			<!-- Page Title -->
 			<div class="row no-margin-padding">
 				<div class="col-md-6">
-					<h3 class="block-title">Hormon Tests</h3>
+					
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="doctor-home.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                       
+						</li>
 					</ol>
 				</div>
 			</div>
@@ -154,98 +157,69 @@
 
 			<!-- /Breadcrumb -->
 			<!-- Main Content -->
-			<div class="container-fluid">
+			<div class="container-fluid home">
+
 
 				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-md-12">
+                <div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
-							<h3 class="widget-title">All Hormons Tests</h3>							
-							<div class="table-responsive mb-3">
-								<table id="tableId" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											
-											<th>Patient ID</th>
-											<th>T3</th>
-											<th>T4</th>
-											<th>THS</th>
-											<th>Vitamin B12</th>
-											<th>Vitamin D</th>
-                                    
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
+							<h3 class="widget-title">Add Requested Test </h3>
 
-											<?php
-													$servername = "localhost";
-                                            		$username = "root";
-                                            		$password = "";
+							<form method='post' id="form" action='add_requested_test.php'>
+								<div class="form-row">
+                                    <div class="form-group col-md-6">
+										<label for="specialization">Patient ID</label>
+										 <?php
+										 $id=$_GET['id'];
+										 echo"
+										<input type='text'  class='form-control' id='specialization' name='patient_id' required  value='{$id}'>";
+										?>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="test">Test Type</label>
+										<select class="form-control" id="test" name="test" >
+											<option>Urine Test</option>
+											<option>Stool Test</option>
+											<option>Hormones Test</option>
+										</select>
+									</div>
+                                  <div class="form-group col-md-6">
+										<label for="about-doctor1">Doctor Name</label>
+										<?php
+										 $doctorname=$_GET['name'];
+										 echo"
+										<input type='text' placeholder='' class='form-control' id='about-doctor1' rows='3' name='name' required value='{$doctorname}'>";
+                                    ?>
+										</div>
+									
+                                   
+												
+									<div class="form-check col-md-12 mb-2">
+										<div class="text-left">
+											<div class="custom-control custom-checkbox">
+												<input class="custom-control-input" type="checkbox" id="ex-check-2">
+												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group col-md-6 mb-3">
+										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+									</div>
+								</div>
+							</form>
 
-                                            $dbname = "proclinc";
-
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            // Check connection
-                                            $sql = "SELECT * FROM hormons_analysis";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($conn->connect_error) {
-                                              die("Connection failed: " . $conn->connect_error);
-                                            }
-                                             if (mysqli_num_rows($result) > 0) {
-                                               while($row =mysqli_fetch_assoc($result)) {
-													$id=$row['Patient_ID'];
-                                                   echo"<td><a  id='name'  >".$row['Patient_ID']."</a></td>";
-                                                    echo"<td  >".$row['T3']."</td>";
-                                                  echo"<td id='dob'>".$row['T4']."</td>";
-                                                    echo"<td id='p_n'>".$row["TSH"]."</td>";
-                                                    echo"<td id='p_n'>".$row["Vitmin_B12"]."</td>";
-                                                    echo"<td id='p_n'>".$row["Vitmin_D"]."</td>";
-                                                    echo"	</tr>";
-                                                 }
-                                               }
-
-
-
-                                             else {
-                                               echo "0 results";
-                                             }
-
-
-										    $conn->close();
-
-
-									        ?>
-
-
-
-									</tbody>
-								</table>
-								<!--Export links-->
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center export-pagination">
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
-										</li>
-									</ul>
-								</nav>
-								<!-- /Export links-->
-							
-							</div>
+						
+							<!-- /Alerts-->
 						</div>
 					</div>
-					<!-- /Widget Item -->
 				</div>
+
+					<!-- /Widget Item -->
+					<!-- Widget Item -->
+					
+
+				</div>
+
 			</div>
 			<!-- /Main Content -->
 		</div>
@@ -256,20 +230,21 @@
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
+	
 	<!-- Jquery Library-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
-	<script src="datatable/jquery.dataTables.min.js"></script>
-	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+	<script src="js/bootstrap.min.js"></script>
+	<!-- morris charts -->
+	<script src="charts/js/raphael-min.js"></script>
+	<script src="charts/js/morris.min.js"></script>
+	<script src="js/custom-morris.js"></script>
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
-	<script src="js/custom-datatables.js"></script>
+	
 </body>
 
 </html>

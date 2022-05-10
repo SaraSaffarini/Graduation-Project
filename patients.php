@@ -1,6 +1,6 @@
 <?php
-	    session_start();
-	?>
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +13,7 @@
 	<link rel="shortcut icon" type="image/png" href="images/fav.png">
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 	<!-- themify icons CSS -->
 	<link rel="stylesheet" href="css/themify-icons.css">
@@ -61,7 +61,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -75,7 +75,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -89,7 +89,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -98,12 +98,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -111,9 +111,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -128,21 +130,21 @@
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -153,13 +155,13 @@
 					<h3 class="block-title">Patients</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Patients</li>
+						</li>
+						<li class="breadcrumb-item">Patients</li>
 						<li class="breadcrumb-item active">All Patients</li>
 					</ol>
 				</div>
@@ -174,7 +176,7 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
-							<h3 class="widget-title">Patients List</h3>							
+							<h3 class="widget-title">Patients List</h3>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
@@ -196,50 +198,46 @@
 										<tr>
 
 											<?php
-													$servername = "localhost";
-                                            		$username = "root";
-                                            		$password = "";
+											$servername = "localhost";
+											$username = "root";
+											$password = "";
 
-                                            $dbname = "proclinc";
+											$dbname = "e-care";
 
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            // Check connection
-                                            $sql = "SELECT * FROM patients";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($conn->connect_error) {
-                                              die("Connection failed: " . $conn->connect_error);
-                                            }
-                                             if (mysqli_num_rows($result) > 0) {
-                                               while($row =mysqli_fetch_assoc($result)) {
-                                               echo"<td>";
-                                               	echo"<div class='custom-control custom-checkbox'>";
-                                              echo"<input class='custom-control-input' type='checkbox' id=".$row['id'].">";
-                                               echo	"<label class='custom-control-label' for=".$row['id']."></label>";
-                                              echo" </div>";
-                                               	echo"</td>";
-                                                    $fullname=$row['Full_Name'];
-                                                   echo"<td>".$row['id']."</td>";
-                                                    echo"<td  ><a  id='name' href='about-patient.php?name={$fullname}' >".$row['Full_Name']."</a>";
-                                                  echo"<td id='dob'>".$row["Date_Of_Birth"]."</td>";
-                                                    echo"<td id='p_n'>".$row["Phone_Number"]."</td>";
-													echo"<td id='p_n'>".$row["Gender"]."</td>";
+											// Create connection
+											$conn = new mysqli($servername, $username, $password, $dbname);
+											// Check connection
+											$sql = "SELECT * FROM patients";
+											$result = mysqli_query($conn, $sql);
+											if ($conn->connect_error) {
+												die("Connection failed: " . $conn->connect_error);
+											}
+											if (mysqli_num_rows($result) > 0) {
+												while ($row = mysqli_fetch_assoc($result)) {
+													echo "<td>";
+													echo "<div class='custom-control custom-checkbox'>";
+													echo "<input class='custom-control-input' type='checkbox' id=" . $row['id'] . ">";
+													echo	"<label class='custom-control-label' for=" . $row['id'] . "></label>";
+													echo " </div>";
+													echo "</td>";
+													$fullname = $row['Full_Name'];
+													echo "<td>" . $row['id'] . "</td>";
+													echo "<td  ><a  id='name' href='about-patient.php?name={$fullname}' >" . $row['Full_Name'] . "</a>";
+													echo "<td id='dob'>" . $row["Date_Of_Birth"] . "</td>";
+													echo "<td id='p_n'>" . $row["Phone_Number"] . "</td>";
+													echo "<td id='p_n'>" . $row["Gender"] . "</td>";
 
-                                                    echo"	</tr>";
-                                                 }
-                                               }
-
-
-
-                                             else {
-                                               echo "0 results";
-                                             }
+													echo "	</tr>";
+												}
+											} else {
+												echo "0 results";
+											}
 
 
-										    $conn->close();
+											$conn->close();
 
 
-									        ?>
+											?>
 
 
 
@@ -252,7 +250,7 @@
 											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
 										</li>
 										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
+											<a class="page-link" href="#"><span class="ti-printer"></span> print</a>
 										</li>
 										<li class="page-item">
 											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
@@ -262,7 +260,7 @@
 										</li>
 									</ul>
 								</nav>
-							
+
 							</div>
 						</div>
 					</div>
@@ -283,12 +281,12 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 	<script src="js/custom-datatables.js"></script>

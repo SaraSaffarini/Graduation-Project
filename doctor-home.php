@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,6 @@ session_start();
 <body>
 
 
-
 	<!-- Pre Loader -->
 	<div class="loading">
 		<div class="spinner">
@@ -50,17 +49,17 @@ session_start();
 				<a href="doctor-home.php"><img src="images/logo.png" class="logo" width="200px" style="border-radius: 50%" alt="logo"></a>
 			</div>
 			<ul class="list-unstyled components">
-                <li>
+				<li>
 
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
 						<span class="ti-pencil-alt"></span> Appointments
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
-						
+
 						<li>
 							<a href="doctor-home.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -71,27 +70,27 @@ session_start();
 						<li>
 							<a href="doctor_urine.php">Show Urine Test Result</a>
 						</li>
-                        <li>
+						<li>
 							<a href="doctor_stool.php">Show Stool Test Result</a>
 						</li>
 						<li>
-							<a href="doctor_hormons.php">Show Hormons Test Result</a>
+							<a href="doctor_hormones.php">Show Hormone Test Result</a>
 						</li>
-					
+
 					</ul>
-		
+
 				<li>
 
 					<a href="#nav-pattient" data-toggle="collapse" aria-expanded="false">
-				<span class="ti-pencil-alt"></span> Patients
-				</a>
-				<ul class="collapse list-unstyled" id="nav-pattient">
-				
+						<span class="ti-pencil-alt"></span> Patients
+					</a>
+					<ul class="collapse list-unstyled" id="nav-pattient">
+
 						<li>
 							<a href="show_patient_file.php">Show Patients File</a>
 						</li>
-	
-				</ul>
+
+					</ul>
 				</li>
 
 			</ul>
@@ -100,9 +99,11 @@ session_start();
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -116,21 +117,21 @@ session_start();
 						<a href="doctor-home.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -147,7 +148,7 @@ session_start();
 								<span class="ti-home"></span>
 							</a>
 						</li>
-						
+
 					</ol>
 				</div>
 			</div>
@@ -175,61 +176,65 @@ session_start();
 											<th>Date</th>
 											<th>Time</th>
 											<th>Problem </th>
-											<th>Token Number</th>											
+											<th>Token Number</th>
 										</tr>
 									</thead>
 									<tbody>
-                                        <?php 
-                                        		$servername = "localhost";
-                                                $username = "root";
-                                                $password = "";
 
-                                        $dbname = "proclinc";
 
-                                        // Create connection
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                        // Check connection
-                                        if ($conn->connect_error) {
-                                            die("Connection failed: " . $conn->connect_error);
-                                          }
-                                        $username=$_SESSION['username'];
+										<?php
+										$servername = "localhost";
+										$username = "root";
+										$password = "";
 
-                                        $sql2= "SELECT * FROM doctors WHERE username='$username'";
-                                        
-                                        $result = mysqli_query($conn, $sql2);
-                                       
-                                         if (mysqli_num_rows($result) > 0) {
-                                           while($row =mysqli_fetch_assoc($result)) {
-                                               $doctorname=$row['Full_Name'];
-                                           }
-                                        }
-                                         
-                                        $sql = "SELECT * FROM appointments WHERE Doctor_Name='$doctorname'";
-                                        $result1 = mysqli_query($conn, $sql);
-                                        $datenow = Date('Y-m-d');
-                                         if (mysqli_num_rows($result1) > 0) {
-                                           while($row =mysqli_fetch_assoc($result1)) {
-											   if($row['Appotiment_Date']>=$datenow){
-											$name=$row['Patient_Name'];
-											$id=$row['Patient_ID'];
+										$dbname = "e-care";
 
-                                      echo"  
+										// Create connection
+										$conn = new mysqli($servername, $username, $password, $dbname);
+										// Check connection
+										if ($conn->connect_error) {
+											die("Connection failed: " . $conn->connect_error);
+										}
+										$username = $_SESSION['username'];
+
+										$sql2 = "SELECT * FROM doctors WHERE username='$username'";
+
+										$result = mysqli_query($conn, $sql2);
+
+										if (mysqli_num_rows($result) > 0) {
+											while ($row = mysqli_fetch_assoc($result)) {
+												$doctorname = $row['Full_Name'];
+												$_SESSION['doctor_name'] = $doctorname;
+											}
+										}
+
+										$sql = "SELECT * FROM appointments WHERE Doctor_Name='$doctorname' AND Existing=1";
+										$result1 = mysqli_query($conn, $sql);
+										$datenow = Date('Y-m-d');
+										if (mysqli_num_rows($result1) > 0) {
+											while ($row = mysqli_fetch_assoc($result1)) {
+												if ($row['Appotiment_Date'] >= $datenow) {
+													$name = $row['Patient_Name'];
+													$id = $row['Patient_ID'];
+
+													echo "  
 										<tr>
 										<td><button type='button' class='btn btn-danger'><a href='delete_appotiment1.php?name={$name}'>Done</a></button></td>
-											<td id='name'>".$row['Patient_Name']."</td>
-											<td id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>".$row['Patient_ID']."</a></td>
+
+										<td title=' Click here to request test' id='name'><a href='request_test_doctor.php?id={$id} && name={$doctorname}'>" . $row['Patient_Name'] . "</a></td>
+											<td title=' Click here to add patient file' id='id'><a href='add_patient_file.php?id={$id} && name={$doctorname}'>" . $row['Patient_ID'] . "</a></td>
 									
-											<td>".$doctorname."</td>
-											<td>".$row['Department']."</td>
-											<td>".$row['Appotiment_Date']."</td>
-											<td>".$row['Appotiment_Time']."</td>
-											<td>".$row['Problem_Desreption']."</td>
-											<td>".$row['Token_Num']."</td>
+											<td>" . $doctorname . "</td>
+											<td>" . $row['Department'] . "</td>
+											<td>" . $row['Appotiment_Date'] . "</td>
+											<td>" . $row['Appotiment_Time'] . "</td>
+											<td>" . $row['Problem_Desreption'] . "</td>
+											<td>" . $row['Token_Num'] . "</td>
 										</tr>";
-                                           }
+												}
+											}
 										}
-                                        }
-                                        ?>
+										?>
 									</tbody>
 								</table>
 							</div>
@@ -238,23 +243,23 @@ session_start();
 					<!-- /Widget Item -->
 				</div>
 
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					
+				<!-- /Widget Item -->
+				<!-- Widget Item -->
 
-				</div>
 
 			</div>
-			<!-- /Main Content -->
+
 		</div>
-		<!-- /Page Content -->
+		<!-- /Main Content -->
+	</div>
+	<!-- /Page Content -->
 	</div>
 	<!-- Back to Top -->
 	<a id="back-to-top" href="#" class="back-to-top">
 		<span class="ti-angle-up"></span>
 	</a>
 	<!-- /Back to Top -->
-	
+
 	<!-- Jquery Library-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<!-- Popper Library-->
@@ -266,18 +271,17 @@ session_start();
 	<script src="charts/js/morris.min.js"></script>
 	<script src="js/custom-morris.js"></script>
 	<script>
-								function delete_p(){
-								const name =document.getElementById('name').value;
-								alert(name);
-								        if(confirm("Are you sure you want to delete this appointment?")){
-								            location.href='delete_appotiment1.php?name={test}';
+		function delete_p() {
+			const name = document.getElementById('name').value;
+			alert(name);
+			if (confirm("Are you sure you want to delete this appointment?")) {
+				location.href = 'delete_appotiment1.php?name={test}';
 
-								        }
+			}
 
 
-								}
-
-								</script>
+		}
+	</script>
 
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>

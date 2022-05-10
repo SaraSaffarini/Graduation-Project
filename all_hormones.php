@@ -54,9 +54,7 @@
 						<span class="ti-pencil-alt"></span> Urine Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-patients">
-						<li>
-							<a href="urine_report.php">Add Urine Analysis</a>
-						</li>
+						
 						<li>
 							<a href="all_urine.php">All Urine Reports</a>
 						</li>
@@ -68,9 +66,7 @@
 						<span class="ti-pencil-alt"></span> Stool Anaylsis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-doctors">
-						<li>
-							<a href="stool_report.php">Add Stool Anaylsis</a>
-						</li>
+						
 						<li>
 							<a href="all_stool.php">All Stool Reports</a>
 						</li>
@@ -79,14 +75,12 @@
 				</li>
 				<li>
 					<a href="#nav-appointment" data-toggle="collapse" aria-expanded="false">
-						<span class="ti-pencil-alt"></span> Hormons Analysis
+						<span class="ti-pencil-alt"></span> Hormone Analysis
 					</a>
 					<ul class="collapse list-unstyled" id="nav-appointment">
+						
 						<li>
-							<a href="hormons_report.php">Add Hormons Analysis</a>
-						</li>
-						<li>
-							<a href="all_hormons.php">All Hormons Reports</a>
+							<a href="all_hormones.php">All Hormone Reports</a>
 						</li>
 						
 					</ul>
@@ -135,7 +129,7 @@
 			<!-- Page Title -->
 			<div class="row no-margin-padding">
 				<div class="col-md-6">
-					<h3 class="block-title">All Hormon Tests</h3>
+					<h3 class="block-title">All Hormone Tests</h3>
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb">						
@@ -181,12 +175,12 @@
                                             		$username = "root";
                                             		$password = "";
 
-                                            $dbname = "proclinc";
+                                            $dbname = "e-care";
 
                                             // Create connection
                                             $conn = new mysqli($servername, $username, $password, $dbname);
                                             // Check connection
-                                            $sql = "SELECT * FROM hormons_analysis";
+                                            $sql = "SELECT * FROM hormones_analysis";
                                             $result = mysqli_query($conn, $sql);
                                             if ($conn->connect_error) {
                                               die("Connection failed: " . $conn->connect_error);
@@ -194,7 +188,7 @@
                                              if (mysqli_num_rows($result) > 0) {
                                                while($row =mysqli_fetch_assoc($result)) {
 													$id=$row['Patient_ID'];
-                                                   echo"<td><a  id='name' href='about-hermons.php?id={$id}' >".$row['Patient_ID']."</a></td>";
+                                                   echo"<td><a  id='name' href='about-hormones.php?id={$id}' >".$row['Patient_ID']."</a></td>";
                                                     echo"<td  >".$row['T3']."</td>";
                                                   echo"<td id='dob'>".$row['T4']."</td>";
                                                     echo"<td id='p_n'>".$row["TSH"]."</td>";

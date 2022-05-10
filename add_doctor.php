@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-$dbname = "proclinc";
+$dbname = "e-care";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,8 +26,9 @@ $username=$_POST['username'];
 $duty_time=$_POST['duty_time'];
 $department=$_POST['department'];
 
-$sql = "INSERT INTO doctors (available,Full_Name,Date_Of_Birth,Phone_Number,Gender,Email,Address,Duty_Time,Department,Specialzation,username)
-       VALUES ('Available','$name','$date','$phone','$gender','$email','$address','$duty_time','$department','$spec','$username')";
+
+$sql = "INSERT INTO doctors (Full_Name,Date_Of_Birth,Phone_Number,Gender,email,Address,Duty_Time,Department,Specialzation,username)
+       VALUES ('$name','$date','$phone','$gender','$email','$address','$duty_time','$department','$spec','$username')";
 $sql2="INSERT INTO access_system (username,password,user_level) VALUES ('$username','$password','2')";
  if (mysqli_query($conn, $sql)) {
         echo "New record has been added successfully !";

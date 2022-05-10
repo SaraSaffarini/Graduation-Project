@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<?php 
-	session_start();
-	?>
+<?php
+session_start();
+?>
 
 <head>
 	<meta charset="utf-8">
@@ -58,7 +58,7 @@
 						<li>
 							<a href="patients.php">All Patients</a>
 						</li>
-					
+
 					</ul>
 				</li>
 				<li>
@@ -72,7 +72,7 @@
 						<li>
 							<a href="doctors.php">All Doctors</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -86,7 +86,7 @@
 						<li>
 							<a href="appointments.php">All Appointments</a>
 						</li>
-						
+
 					</ul>
 				</li>
 				<li>
@@ -95,12 +95,12 @@
 					</a>
 					<ul class="collapse list-unstyled" id="nav-payment">
 						<li>
-							<a href="add-payment.html">Add Payment</a>
+							<a href="add-payment.php">Add Payment</a>
 						</li>
 						<li>
 							<a href="payments.php">All Payments</a>
 						</li>
-					
+
 					</ul>
 				</li>
 
@@ -108,9 +108,11 @@
 			<div class="nav-help animated fadeIn">
 				<h5><span class="ti-comments"></span> Need Help</h5>
 				<h6>
-					<span class="ti-mobile"></span> 09-2383818</h6>
+					<span class="ti-mobile"></span> 09-2383818
+				</h6>
 				<h6>
-					<span class="ti-email"></span> SaintLuke's@gmail.com</h6>
+					<span class="ti-email"></span> SaintLuke's@gmail.com
+				</h6>
 				<p class="copyright-text">Copy rights &copy; 2022</p>
 			</div>
 		</nav>
@@ -125,21 +127,21 @@
 						<a href="index.php"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 					<ul class="nav">
-		
+
 						<li class="nav-item">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<span class="ti-user"></span>
 							</a>
 							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<h5><?php echo $_SESSION['username'] ;?>
-                                </h5>
-							
+								<h5><?php echo $_SESSION['username']; ?>
+								</h5>
+
 								<a class="dropdown-item" href="login.php">
 									<span class="ti-power-off"></span> Logout</a>
 							</div>
 						</li>
 					</ul>
-				
+
 				</div>
 			</nav>
 			<!-- /Top Navigation -->
@@ -150,13 +152,13 @@
 					<h3 class="block-title">Payments</h3>
 				</div>
 				<div class="col-md-6">
-					<ol class="breadcrumb">						
+					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="index.php">
 								<span class="ti-home"></span>
 							</a>
-                        </li>
-                        <li class="breadcrumb-item">Payments</li>
+						</li>
+						<li class="breadcrumb-item">Payments</li>
 						<li class="breadcrumb-item active">All Payments</li>
 					</ol>
 				</div>
@@ -172,7 +174,15 @@
 					<div class="col-md-12">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Payments List</h3>
-							<div class="table-responsive mb-3">
+							<form method='post' action=''>
+								Start Date <input type='date' id="fromDate" name='fromDate' onchange='handleChangeDate()' value='<?php if (isset($_POST['fromDate'])) echo $_POST['fromDate'] ?>'>
+
+								End Date <input type='date' id="endDate" name='endDate' value='<?php if (isset($_POST['endDate']))
+																									echo $_POST['fromDate']; ?>'>
+
+								<input type='submit' name='but_search' value='Search'>
+							</form>
+							<div class="table-responsive mb-3" style="margin-Top:10px">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
 										<tr>
@@ -182,89 +192,100 @@
 													<label class="custom-control-label" for="select-all"></label>
 												</div>
 											</th>
-											<th>Patient Name</th>
-											<th>Doctor Name</th>
+											<th>Patient ID </th>
 											<th>Service Name</th>
 											<th>Charges</th>
 											<th>Discount <small>(%)</small></th>
+											<th>Visit Date</th>
+
+
 										</tr>
 									</thead>
-                                    <tbody>
-										
-									<?php
-									
-													$servername = "localhost";
-                                            		$username = "root";
-                                            		$password = "";
+									<tbody>
 
-                                            $dbname = "proclinc";
-											$_SESSION['discount']=0;
-											$row1;
-											$discount;
-											
+										<?php
 
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            // Check connection
-                                            $sql = "SELECT * FROM payments";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($conn->connect_error) {
-                                              die("Connection failed: " . $conn->connect_error);
-                                            }
-                                             if (mysqli_num_rows($result) > 0) {
-                                               while($row =mysqli_fetch_assoc($result)) {
-												   if(!strcmp($row['Insurance_Valid'],"Yes")){
-													   
-												 $id=$row['Patiend_ID'];
-													$sql1 = "SELECT * FROM insurance_comapny WHERE Patient_ID	='$id'";
+										$servername = "localhost";
+										$username = "root";
+										$password = "";
+
+										$dbname = "e-care";
+										$_SESSION['discount'] = 0;
+										$row1;
+										$discount;
+
+
+										// Create connection
+										$conn = new mysqli($servername, $username, $password, $dbname);
+										// Check connection
+										$sql = "SELECT * FROM payments WHERE 1";
+
+										if (isset($_POST['but_search'])) {
+											$fromDate = $_POST['fromDate'];
+											$endDate = $_POST['endDate'];
+
+											if (!empty($fromDate) && !empty($endDate)) {
+												$sql .= " and Vist_Date 
+															between '" . $fromDate . "' and '" . $endDate . "' ";
+											}
+										}
+
+										// Sort
+										$sql .= " ORDER BY Vist_Date ASC";
+
+
+										$result = mysqli_query($conn, $sql);
+										if ($conn->connect_error) {
+											die("Connection failed: " . $conn->connect_error);
+										}
+										if (mysqli_num_rows($result) > 0) {
+											while ($row = mysqli_fetch_assoc($result)) {
+												if (!strcmp($row['Insurance_Valid'], "Yes")) {
+
+													$id = $row['Patiend_ID'];
+													$sql1 = "SELECT * FROM insurance_company WHERE Patient_ID	='$id'";
 													$result1 = mysqli_query($conn, $sql1);
 													if (mysqli_num_rows($result1) > 0) {
-														while($row1 =mysqli_fetch_assoc($result1)) {
-															$discount=$row1['Insurance_Discount'];
-															$_SESSION['discount']=$row1['Insurance_Discount'];
-															
+														while ($row1 = mysqli_fetch_assoc($result1)) {
+															$discount = $row1['Insurance_Discount'];
+															$_SESSION['discount'] = $row1['Insurance_Discount'];
 														}
+													} else {
 													}
-													else{
+												} else {
+													$_SESSION['discount'] = 0;
+												}
 
-													}
 
-
-												   }
-												   else {
-													   $_SESSION['discount']=0;
-												   	}
-												  
-
-												   echo" <tr>
+												echo " <tr>
                                             <td>
                                                 <div class='custom-control custom-checkbox'>
                                                     <input class='custom-control-input' type='checkbox' id='1'>
                                                     <label class='custom-control-label' for='1'></label>
                                                 </div>
                                             </td>";
-											$name=$row['Patient_Name'];
-                                          echo " <td><a href='about-payment.php?name={$name}'>".$row['Patient_Name']."</a></td>
-                                            <td>".$row['Doctor_Name']."</td>
-                                            <td>".$row['Service_Type']."</td>
-                                            <td>".$row['Cost']."</td>
-                                            <td>".$_SESSION['discount']."</td>
+												echo " <td><a href='about-payment.php?name={$id}'>" . $id . "</a></td>
+                                            <td>" . $row['Service_Type'] . "</td>
+                                            <td>" . $row['Cost'] . "</td>
+                                            <td>" . $_SESSION['discount'] . "</td>
+											<td>" . $row['Vist_Date'] . "</td>
+
+											
                                     
                                         </tr>";
-											   }
 											}
-											else {
-												echo "0 results";
-											  }
- 
- 
-											 $conn->close()
+										} else {
+											echo "0 results";
+										}
 
 
-                ?>
-                                    </tbody>
-                                </table>
-                                
+										$conn->close()
+
+
+										?>
+									</tbody>
+								</table>
+
 								<!--Export links-->
 								<nav aria-label="Page navigation example">
 									<ul class="pagination justify-content-center export-pagination">
@@ -272,7 +293,7 @@
 											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
 										</li>
 										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
+											<a class="page-link" href="#"><span class="ti-printer"></span> print</a>
 										</li>
 										<li class="page-item">
 											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
@@ -282,9 +303,6 @@
 										</li>
 									</ul>
 								</nav>
-								<!-- /Export links-->
-								<button type="button" class="btn btn-danger mt-3 mb-0"><span class="ti-trash"></span> DELETE</button>
-								<button type="button" class="btn btn-primary mt-3 mb-0"><span class="ti-pencil-alt"></span> EDIT</button>
 							</div>
 						</div>
 					</div>
@@ -305,15 +323,30 @@
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
+
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 	<script src="js/custom-datatables.js"></script>
 </body>
 
 </html>
+<script>
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+	}
+
+	function handleChangeDate() {
+		var startDate = document.getElementById("fromDate").value;
+		if (startDate) {
+			document.getElementById("endDate").setAttribute("min", startDate);
+			if (document.getElementById("endDate").value < startDate) {
+				document.getElementById("endDate").value = startDate
+			}
+		}
+	}
+</script>

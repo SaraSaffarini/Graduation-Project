@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-$dbname = "proclinc";
+$dbname = "e-care";
 session_start();
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 
 
 
-$id= $_SESSION['id'];
-$sql = "DELETE FROM hormons_analysis  WHERE Patient_ID ='$id'";
+$id= $_GET['id'];
+$sql = "UPDATE `requested_tests` SET State='0' WHERE Patient_Id = '$id'";
  if (mysqli_query($conn, $sql)) {
         header("Location:lab.php");
      }
